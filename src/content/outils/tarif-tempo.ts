@@ -9,7 +9,7 @@ export default defineGuide({
   group: 'tempo',
   order: 4,
   tool: 'tarifTempo',
-  related: ['comparateur', 'prix-kwh', 'jours-tempo-restants', 'tempo-rentable', 'puissance-compteur'],
+  related: ['comparateur', 'prix-kwh', 'jours-tempo-restants', 'tempo-rentable', 'puissance-compteur', 'ejp-demain', 'zen-flex-edf'],
   sources: ['grilleEdf', 'creTrve2026', 'creTempo2014', 'rteCalendrier'],
   fr: {
     slug: 'tarif-tempo',
@@ -49,7 +49,7 @@ ${h.table(['Puissance', 'Abonnement par mois', 'Par an'], K.map((k) => [`${k} kV
 </ol>
 <p>L’outil applique alors exactement la grille, sans hypothèse sur votre chauffage : c’est le calcul le plus fiable si vous êtes déjà client Tempo. Si vous ne l’êtes pas encore, le ${h.a('comparateur', 'comparateur Base, Heures creuses ou Tempo')} estime la répartition par couleur à partir de votre seule consommation annuelle, et la page ${h.a('prix-kwh', 'prix du kWh')} donne les grilles des deux autres options.</p>
 <h2>Jusqu’à quand ces prix s’appliquent</h2>
-<p>Les tarifs réglementés changent par décision des pouvoirs publics, sur proposition de la CRE, le plus souvent au 1er février et au 1er août. À la date du relevé, ${h.date(h.P.retrieved_at)}, aucune proposition n’était publiée pour le mouvement suivant. Le site affichera les nouveaux prix le jour de leur entrée en vigueur, en gardant l’ancienne grille en mémoire dans ses paramètres datés.</p>`;
+<p>Les tarifs réglementés changent par décision des pouvoirs publics, sur proposition de la CRE, le plus souvent au 1er février et au 1er août. À la date du relevé, ${h.date(h.P.retrieved_at)}, aucune proposition n’était publiée pour le mouvement suivant. Le site affichera les nouveaux prix le jour de leur entrée en vigueur, en gardant l’ancienne grille en mémoire dans ses paramètres datés. Deux autres formules à jours chers se comparent à Tempo : l’ancienne ${h.a('ejp-demain', 'option EJP')}, fermée aux nouveaux clients, et l’offre de marché ${h.a('zen-flex-edf', 'Zen Flex d’EDF')}.</p>`;
     },
   },
   en: {
@@ -90,7 +90,7 @@ ${h.table(['Power', 'Standing charge a month', 'A year'], K.map((k) => [`${k} kV
 </ol>
 <p>The tool then applies the grid exactly, with no assumption about your heating: it is the most reliable calculation if you are already on Tempo. If you are not yet, the ${h.a('comparateur', 'Base, Off-peak or Tempo comparison')} estimates the split by colour from your annual consumption alone, and the ${h.a('prix-kwh', 'price per kWh')} page gives the grids of the two other options.</p>
 <h2>How long these prices apply</h2>
-<p>Regulated tariffs change by government decision on the regulator’s proposal, most often on 1 February and 1 August. On the date of our check, ${h.date(h.P.retrieved_at)}, no proposal had been published for the next change. The site will show new prices on the day they take effect, keeping the old grid on record in its dated parameters.</p>`;
+<p>Regulated tariffs change by government decision on the regulator’s proposal, most often on 1 February and 1 August. On the date of our check, ${h.date(h.P.retrieved_at)}, no proposal had been published for the next change. The site will show new prices on the day they take effect, keeping the old grid on record in its dated parameters. Two other formulas with expensive days compare with Tempo: the old ${h.a('ejp-demain', 'EJP option')}, closed to new customers, and EDF’s ${h.a('zen-flex-edf', 'Zen Flex')} market offer.</p>`;
     },
   },
 });

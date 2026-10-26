@@ -9,7 +9,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import MiniSim from './calc/MiniSim';
 import Clamp from './Clamp.astro';
 import CompareCalc from './tempo/CompareCalc';
-import { DemainCalc, JoursRestantsTool, HistoriqueTool, TarifTempoCalc, HeuresCreusesCalc, PuissanceCalc, PrixKwhCalc } from './tempo/Tools';
+import { DemainCalc, EjpTool, JoursRestantsTool, HistoriqueTool, TarifTempoCalc, HeuresCreusesCalc, PuissanceCalc, PrixKwhCalc } from './tempo/Tools';
 import { BUILD_TODAY } from '../lib/today';
 import { route, ROUTES, type Locale } from '../i18n/routes';
 import { label } from '../i18n/nav';
@@ -52,6 +52,7 @@ const miniHref = ROUTES.some((r) => r.id === cible) ? route(cible, lang) : undef
         <div data-outil class="mb-4">
           {page.tool === 'comparateur' && <CompareCalc client:load lang={lang} methodHref={methodHref} />}
           {page.tool === 'demain' && <DemainCalc client:load lang={lang} buildDate={BUILD_TODAY} methodHref={methodHref} />}
+          {page.tool === 'ejp' && <EjpTool client:load lang={lang} buildDate={BUILD_TODAY} methodHref={methodHref} />}
           {page.tool === 'joursRestants' && <JoursRestantsTool client:load lang={lang} buildDate={BUILD_TODAY} />}
           {page.tool === 'historique' && <HistoriqueTool client:load lang={lang} buildDate={BUILD_TODAY} />}
           {page.tool === 'tarifTempo' && <TarifTempoCalc client:load lang={lang} methodHref={methodHref} />}

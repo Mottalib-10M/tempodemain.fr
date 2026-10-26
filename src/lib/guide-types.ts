@@ -7,7 +7,7 @@ import type { SourceKey, Params } from './engine/params';
 
 export type Lang = 'fr' | 'en';
 export type Group = 'tempo' | 'hc' | 'choisir';
-export type Tool = 'comparateur' | 'tarifTempo' | 'joursRestants' | 'demain' | 'historique' | 'heuresCreuses' | 'puissance' | 'prixKwh';
+export type Tool = 'ejp' | 'comparateur' | 'tarifTempo' | 'joursRestants' | 'demain' | 'historique' | 'heuresCreuses' | 'puissance' | 'prixKwh';
 export interface FAQ { q: string; a: string }
 
 /** Outils d'écriture passés au corps : liens internes, nombres au format de la langue, moteur. */

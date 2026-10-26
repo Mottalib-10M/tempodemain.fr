@@ -21,7 +21,7 @@ export default defineGuide({
   group: 'choisir',
   order: 1,
   tool: 'comparateur',
-  related: ['tempo-rentable', 'prix-kwh', 'tarif-tempo', 'chauffage-electrique-tempo', 'puissance-compteur'],
+  related: ['tempo-rentable', 'prix-kwh', 'tarif-tempo', 'chauffage-electrique-tempo', 'puissance-compteur', 'zen-flex-edf', 'ejp-demain'],
   sources: ['grilleEdf', 'creTrve2026', 'eco2mix', 'rteCalendrier'],
   fr: {
     slug: 'base-heures-creuses-ou-tempo',
@@ -49,7 +49,7 @@ export default defineGuide({
 ${h.table(['Part du chauffage', 'Base', 'Heures creuses', 'Tempo', 'Tempo, moitié reportée'], G.map((g) => [h.pct(g.ch, 0), h.eur(g.base), h.eur(g.hc), h.eur(g.t0), h.eur(g.t50)]), 'Maison de 9 kVA, 8 000 kWh par an, 35 % en heures creuses. Coût annuel TTC, abonnement compris.', ['l', 'r', 'r', 'r', 'r'])}
 <p>Plus le chauffage pèse, plus les jours rouges coûtent, et plus l’effort compte. ${lecture(G, true)} Le guide ${h.a('tempo-rentable', 'Tempo est-il rentable pour vous')} calcule ce seuil sur votre propre consommation.</p>
 <h2>Les limites du calcul</h2>
-<p>Votre chauffage ne suit pas exactement la courbe nationale : une maison très bien isolée chauffe moins par grand froid que la moyenne, une maison mal isolée davantage. Les jours rouges d’une saison réelle dépendent de l’hiver ; le profil retenu est une moyenne de douze hivers. Le calcul ne connaît pas non plus vos heures creuses exactes, seulement la part que vous lui donnez. Pour un résultat au plus près, entrez les index d’une année de facture Tempo sur la page ${h.a('tarif-tempo', 'tarif Tempo')}.</p>`;
+<p>Votre chauffage ne suit pas exactement la courbe nationale : une maison très bien isolée chauffe moins par grand froid que la moyenne, une maison mal isolée davantage. Les jours rouges d’une saison réelle dépendent de l’hiver ; le profil retenu est une moyenne de douze hivers. Le calcul ne connaît pas non plus vos heures creuses exactes, seulement la part que vous lui donnez. Pour un résultat au plus près, entrez les index d’une année de facture Tempo sur la page ${h.a('tarif-tempo', 'tarif Tempo')}. Le comparateur s’en tient aux trois options ouvertes du Tarif Bleu : l’ancienne option EJP est chiffrée face à Tempo sur la page ${h.a('ejp-demain', 'EJP demain')}, l’offre de marché d’EDF sur ${h.a('zen-flex-edf', 'Zen Flex')}.</p>`;
     },
   },
   en: {
@@ -78,7 +78,7 @@ ${h.table(['Part du chauffage', 'Base', 'Heures creuses', 'Tempo', 'Tempo, moiti
 ${h.table(['Heating share', 'Base', 'Off-peak', 'Tempo', 'Tempo, half shifted'], G.map((g) => [h.pct(g.ch, 0), h.eur(g.base), h.eur(g.hc), h.eur(g.t0), h.eur(g.t50)]), 'House at 9 kVA, 8,000 kWh a year, 35% off-peak. Annual cost including tax and standing charge.', ['l', 'r', 'r', 'r', 'r'])}
 <p>The more heating weighs, the more red days cost and the more effort matters. ${lecture(G, false)} The guide ${h.a('tempo-rentable', 'does Tempo pay off for you')} works out that threshold on your own figures.</p>
 <h2>Limits of the calculation</h2>
-<p>Your heating does not follow the national curve exactly: a very well insulated house heats less than average in a cold snap, a poorly insulated one more. A real season’s red days depend on the winter; the profile used is an average of twelve winters. Nor does the calculation know your exact off-peak hours, only the share you give it. For the closest result, enter a year of Tempo meter readings on the ${h.a('tarif-tempo', 'Tempo prices')} page.</p>`;
+<p>Your heating does not follow the national curve exactly: a very well insulated house heats less than average in a cold snap, a poorly insulated one more. A real season’s red days depend on the winter; the profile used is an average of twelve winters. Nor does the calculation know your exact off-peak hours, only the share you give it. For the closest result, enter a year of Tempo meter readings on the ${h.a('tarif-tempo', 'Tempo prices')} page. The comparison sticks to the three open Tarif Bleu options: the old EJP option is priced against Tempo on ${h.a('ejp-demain', 'EJP tomorrow')}, and EDF’s market offer on ${h.a('zen-flex-edf', 'Zen Flex')}.</p>`;
     },
   },
 });

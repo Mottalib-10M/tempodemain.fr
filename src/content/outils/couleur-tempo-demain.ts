@@ -10,7 +10,7 @@ export default defineGuide({
   group: 'tempo',
   order: 2,
   tool: 'demain',
-  related: ['jour-rouge-tempo', 'jours-tempo-restants', 'tarif-tempo', 'comparateur', 'historique-tempo'],
+  related: ['jour-rouge-tempo', 'jours-tempo-restants', 'tarif-tempo', 'comparateur', 'historique-tempo', 'ejp-demain', 'ecowatt'],
   sources: ['rteCalendrier', 'rteMethode', 'creTempo2014', 'grilleEdf'],
   fr: {
     slug: 'couleur-tempo-demain',
@@ -35,7 +35,7 @@ export default defineGuide({
       return `
 <h2>Qui décide de la couleur, et quand</h2>
 <p>Depuis le 1er novembre 2014, le choix des jours Tempo revient à RTE, qui gère le réseau de transport d’électricité, et non plus à un fournisseur. La ${h.src('creTempo2014', 'délibération de la CRE')} qui le prévoit fixe les quotas et le calendrier ; la ${h.src('rteMethode', 'fiche de méthode de RTE')} décrit l’algorithme. Chaque matin, RTE compare la consommation nette attendue le lendemain, consommation nationale moins éolien et solaire, à deux seuils qui baissent à mesure que la saison avance et que le stock de jours se vide. Un lundi de janvier glacial et sans vent a toutes les chances d’être rouge ; un mardi doux et venteux restera bleu.</p>
-<p>La décision est publiée à 10 h 30 sur le ${h.src('rteCalendrier', 'calendrier Tempo de RTE')}. Elle vaut pour tous les clients Tempo, quel que soit leur fournisseur, et pour la journée qui commence le lendemain à 6 h.</p>
+<p>La décision est publiée à 10 h 30 sur le ${h.src('rteCalendrier', 'calendrier Tempo de RTE')}. Elle vaut pour tous les clients Tempo, quel que soit leur fournisseur, et pour la journée qui commence le lendemain à 6 h. Les abonnés à l’ancienne option EJP suivent un autre calendrier, décidé par EDF et annoncé vers 14 h : il a sa page, ${h.a('ejp-demain', 'EJP demain')}. Le signal ${h.a('ecowatt', 'Ecowatt')}, lui aussi publié par RTE, ne change pas la couleur Tempo.</p>
 <h2>Les quatorze derniers jours</h2>
 ${h.table(['Jour', 'Date', 'Couleur'], L.map((x) => [nomJour(h, x.d), h.date(x.d), x.c ? NOMS.fr[x.c] : 'non publiée']), 'Couleurs publiées par RTE, du plus récent au plus ancien ; la première ligne est le lendemain du dernier relevé.', ['l', 'l', 'l'])}
 <p>Le tableau suit le dernier relevé de la page. Les jours encore à venir n’ont pas de couleur tant que RTE ne l’a pas publiée. Le détail de toute la saison est sur la page ${h.a('jours-tempo-restants', 'jours Tempo restants')}, et les hivers passés sur l’${h.a('historique-tempo', 'historique Tempo')}.</p>
@@ -75,7 +75,7 @@ ${h.table(['Jour', 'Date', 'Couleur'], L.map((x) => [nomJour(h, x.d), h.date(x.d
       return `
 <h2>Who decides the colour, and when</h2>
 <p>Since 1 November 2014 Tempo days have been chosen by RTE, which runs the high-voltage grid, rather than by a supplier. The ${h.src('creTempo2014', 'regulator’s deliberation')} behind it sets the quotas and the calendar; ${h.src('rteMethode', 'RTE’s method note')} describes the algorithm. Each morning RTE compares the next day’s expected net demand, national consumption minus wind and solar, with two thresholds that drop as the season goes on and the stock of days runs down. A freezing, windless Monday in January is very likely to be red; a mild, breezy Tuesday will stay blue.</p>
-<p>The decision goes out at 10:30 on ${h.src('rteCalendrier', 'RTE’s Tempo calendar')}. It applies to every Tempo customer, whatever the supplier, for the day that starts at 06:00 the next morning.</p>
+<p>The decision goes out at 10:30 on ${h.src('rteCalendrier', 'RTE’s Tempo calendar')}. It applies to every Tempo customer, whatever the supplier, for the day that starts at 06:00 the next morning. Customers on the old EJP option follow a different calendar, set by EDF and announced around 14:00: it has its own page, ${h.a('ejp-demain', 'EJP tomorrow')}. The ${h.a('ecowatt', 'Ecowatt')} signal, also published by RTE, does not change the Tempo colour.</p>
 <h2>The last fourteen days</h2>
 ${h.table(['Day', 'Date', 'Colour'], L.map((x) => [nomJour(h, x.d), h.date(x.d), x.c ? NOMS.en[x.c] : 'not published']), 'Colours published by RTE, most recent first; the top row is the day after the latest reading.', ['l', 'l', 'l'])}
 <p>The table follows the page’s latest reading. Days still to come have no colour until RTE publishes it. The whole season, day by day, is on the ${h.a('jours-tempo-restants', 'Tempo days left')} page, and past winters are in the ${h.a('historique-tempo', 'Tempo history')}.</p>

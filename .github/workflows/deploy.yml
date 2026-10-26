@@ -6,6 +6,11 @@ name: Couleur Tempo du jour, build et déploiement
 # de date. À chaque passage : relevé RTE (scripts/data/fetch-tempo.mjs), tests du moteur, build,
 # publication sur GitHub Pages, et le fichier des couleurs est recommité s'il a changé.
 # Aucune clé d'API : les données ouvertes du calendrier Tempo de RTE sont publiques.
+# Jours EJP : EDF met à jour vers 14 h (heure de Paris), parfois jusqu'à 5 h du matin du jour EJP.
+# La saison EJP (1er novembre - 31 mars) est à l'heure d'hiver (UTC+1) : 13:20 UTC = 14 h 20 à Paris,
+# 15:20 UTC rattrape un retard, 04:15 UTC = 5 h 15 à Paris, après la dernière annonce possible.
+# Relevé : scripts/data/fetch-ejp.mjs (service public de la page EDF, sans clé). S'il échoue, le
+# fichier précédent est gardé et le déploiement de la couleur Tempo continue.
 on:
   push:
     branches: ['main']
@@ -16,6 +21,9 @@ on:
     - cron: '30 10 * * *'
     - cron: '5 22 * * *'
     - cron: '5 23 * * *'
+    - cron: '20 13 * * *'
+    - cron: '20 15 * * *'
+    - cron: '15 4 * * *'
 
 permissions:
   contents: write
@@ -41,18 +49,21 @@ jobs:
         run: npm ci
       - name: Relevé de la couleur Tempo (RTE)
         run: node scripts/data/fetch-tempo.mjs
+      - name: Relevé des jours EJP (EDF)
+        continue-on-error: true
+        run: node scripts/data/fetch-ejp.mjs
       - name: Tests du moteur
         run: npx vitest run
       - name: Build (avec contrôle des snippets)
         run: npm run build
-      - name: Recommit du fichier des couleurs s'il a changé
+      - name: Recommit des fichiers de couleurs et de jours EJP s'ils ont changé
         if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "releve-tempo"
           git config user.email "releve-tempo@users.noreply.github.com"
-          git add src/data/tempo.json
+          git add src/data/tempo.json src/data/ejp.json
           if ! git diff --cached --quiet; then
-            git commit -m "Couleurs Tempo : relevé RTE du $(date -u +%F)" && git push || echo "push refusé, relevé gardé pour le prochain passage"
+            git commit -m "Couleurs Tempo et jours EJP : relevé RTE et EDF du $(date -u +%F)" && git push || echo "push refusé, relevé gardé pour le prochain passage"
           fi
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

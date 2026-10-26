@@ -239,3 +239,69 @@ export function PrixKwhCalc({ lang = 'fr', methodHref }: { lang?: L; methodHref?
     </>} />
   );
 }
+
+/* ---------------- EJP demain : jour annoncé par EDF, jours restants, EJP ou Tempo ---------------- */
+const EJP_CARTE: Record<M.StatutEjp, { fond: string; texte: string; bord: string }> = {
+  ejp: { fond: '#b91c1c', texte: '#ffffff', bord: '#b91c1c' },
+  non: { fond: '#ffffff', texte: '#0f172a', bord: '#94a3b8' },
+  attente: { fond: '#f8fafc', texte: '#334155', bord: '#cbd5e1' },
+  hors: { fond: '#f8fafc', texte: '#334155', bord: '#cbd5e1' },
+};
+export function EjpTool({ lang = 'fr', buildDate, methodHref }: { lang?: L; buildDate: string; methodHref?: string }) {
+  const fr = lang === 'fr', sep = sepOf(lang);
+  const [today, hour] = useParisDate(buildDate);
+  const demain = M.addDays(today, 1), st = M.statutEjp(demain), r = M.ejpRestants(demain);
+  const [kwh, setKwh] = useState(12000); const [kva, setKva] = useState('12'); const [ch, setCh] = useState(60);
+  const e = M.factureEjp(kwh, Number(kva), ch / 100);
+  const t = M.coutOption('tempo', { kwh, kva: Number(kva), chauffage: ch / 100, partHC: 0.35 });
+  const t50 = M.coutOption('tempo', { kwh, kva: Number(kva), chauffage: ch / 100, partHC: 0.35, effortRouge: 0.5 });
+  const rel = M.releveParis();
+  const relTxt = rel ? `${dateLongue(rel.date, lang)}, ${rel.hour} h` : '';
+  const libelle = {
+    ejp: fr ? 'Oui, jour EJP' : 'Yes, an EJP day',
+    non: fr ? 'Non, pas de jour EJP annoncé' : 'No EJP day announced',
+    attente: fr ? 'Pas encore annoncé' : 'Not announced yet',
+    hors: fr ? 'Non, hors période EJP' : 'No, outside the EJP period',
+  }[st];
+  const detail = {
+    ejp: fr ? 'Pointe mobile de 7 h à 1 h le lendemain, annonce EDF' : 'Peak from 07:00 to 01:00 the next day, as announced by EDF',
+    non: fr ? `Relevé EDF du ${relTxt} ; EDF peut annoncer jusqu’à 5 h du matin` : `EDF reading of ${relTxt}; EDF may still announce until 05:00`,
+    attente: hour < 14 ? (fr ? 'EDF met à jour vers 14 h, parfois plus tard' : 'EDF updates around 14:00, sometimes later') : (fr ? 'Relevé en cours, revenez dans l’heure' : 'Reading in progress, check back within the hour'),
+    hors: fr ? 'Les jours EJP tombent du 1er novembre au 31 mars' : 'EJP days fall between 1 November and 31 March',
+  }[st];
+  const c = EJP_CARTE[st];
+  return (
+    <Shell id="ejp" form={<>
+      <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto]">
+        <div className="rounded-xl border-2 px-4 py-2" style={{ backgroundColor: c.fond, color: c.texte, borderColor: c.bord }} data-ejp={st}>
+          <p className="text-xs font-medium opacity-90">{fr ? 'Demain' : 'Tomorrow'} · {jourLong(demain, lang)}</p>
+          <p className="text-xl font-bold leading-tight">{libelle}</p>
+          <p className="mt-0.5 text-xs opacity-90">{detail}</p>
+        </div>
+        <div className="rounded-xl border-2 border-navy-200 bg-white px-4 py-2 text-navy-900">
+          <p className="text-xs font-medium text-navy-700">{fr ? `Saison ${r.y}-${r.y + 1}` : `Season ${r.y}-${r.y + 1}`}</p>
+          <p className="text-xl font-bold leading-tight tabular-nums">{n0(r.restants, lang)} / {n0(r.quota, lang)}</p>
+          <p className="mt-0.5 text-xs text-navy-700">{fr ? 'jours EJP restants' : 'EJP days left'}</p>
+        </div>
+      </div>
+      <Row2>
+        <NumberField id="ejp-kwh" label={fr ? 'Consommation annuelle' : 'Annual consumption'} value={kwh} onChange={setKwh} unit="kWh" max={100000} help={fr ? 'Total de la dernière facture annuelle' : 'Total on your last annual bill'} lang={lang} />
+        <SelectField id="ejp-kva" label={fr ? 'Puissance' : 'Meter power'} value={kva} onChange={setKva} options={M.EJP_PUISSANCES.map((p) => ({ value: String(p), label: `${p} kVA` }))} />
+      </Row2>
+      <Row2>
+        <NumberField id="ejp-ch" label={fr ? 'Part du chauffage électrique' : 'Electric heating share'} value={ch} onChange={setCh} unit="%" max={100} help={fr ? 'Maison chauffée à l’électricité : 50 à 70 %' : 'Electrically heated house: 50 to 70%'} lang={lang} />
+        <div />
+      </Row2>
+    </>} result={<>
+      <Head label={fr ? 'Votre facture annuelle en EJP' : 'Your annual bill on EJP'} value={eur(e.total, lang)} sub={fr ? `dont ${eur(e.kwhPointe * P.ejp.kwh.pm, lang)} pour les heures de pointe mobile` : `of which ${eur(e.kwhPointe * P.ejp.kwh.pm, lang)} for mobile peak hours`} />
+      <Rows rows={[
+        [fr ? 'Même consommation en Tempo' : 'Same use on Tempo', eur(t.total, lang)],
+        [fr ? 'Tempo, moitié des heures rouges décalée' : 'Tempo, half of red peak use shifted', eur(t50.total, lang)],
+        [fr ? 'Une journée EJP de 60 kWh' : 'A 60 kWh EJP day', eur(M.coutJourEjp(60, true), lang)],
+        [fr ? 'La même journée hors EJP' : 'The same day outside EJP', eur(M.coutJourEjp(60, false), lang)],
+      ]} />
+      <Note>{fr ? `Grille EDF du 1er août 2026${sep}heures normales ${kwhP(P.ejp.kwh.hn, lang)}, pointe mobile ${kwhP(P.ejp.kwh.pm, lang)}. Tempo : 35 % la nuit.` : `EDF grid of 1 August 2026${sep}normal hours ${kwhP(P.ejp.kwh.hn, lang)}, mobile peak ${kwhP(P.ejp.kwh.pm, lang)}. Tempo: 35% at night.`}</Note>
+      <MethodLink href={methodHref} lang={lang} />
+    </>} />
+  );
+}

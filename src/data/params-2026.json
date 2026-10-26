@@ -174,6 +174,70 @@
     "foyers_concernes": 11000000,
     "foyers_23h_7h": 1400000
   },
+  "ejp": {
+    "_lisezmoi": "Option EJP du Tarif Bleu (en extinction, fermée à la souscription). Prix TTC lus le 2026-10-26 sur la grille EDF « Tarif Bleu - Option EJP » applicable au 1er août 2026. Règles : même grille (jours de pointe mobile du 1er novembre au 31 mars, de 7 h à 1 h le lendemain), page EDF « Qu'est-ce que l'option EJP ? » (22 jours, 343 jours au tarif normal, week-ends et fériés possibles) et page EDF des prochains jours EJP (mise à jour vers 14 h, retard possible jusqu'à 5 h du matin, valable pour toutes les zones).",
+    "retrieved_at": "2026-10-26",
+    "valid_from": "2026-08-01",
+    "abo": {
+      "9": 19.52,
+      "12": 23.14,
+      "15": 26.81,
+      "18": 30.37,
+      "36": 52.6
+    },
+    "kwh": {
+      "hn": 0.1789,
+      "pm": 0.4324
+    },
+    "jours": 22,
+    "du": "11-01",
+    "au": "03-31",
+    "pointe_debut": 7,
+    "pointe_fin": 1,
+    "pointe_heures": 18,
+    "annonce_heure": 14,
+    "annonce_retard_max": "5 h du matin du jour EJP"
+  },
+  "zen_flex": {
+    "_lisezmoi": "Offre de marché EDF « Zen Week-End - Option Flex » (Zen Flex). Prix TTC lus le 2026-10-26 sur la grille EDF « Zen Week-End » applicable à compter du 15 septembre 2026 pour toute nouvelle souscription. Règles : fiche de présentation EDF de l'option Flex (20 jours Sobriété du 1er janvier au 15 avril et du 15 octobre au 31 décembre hors week-ends et fériés, heures pleines de 8 h à 13 h et de 18 h à 20 h, annonce à 16 h la veille, prix HT révisables deux fois par an) et fiche descriptive Zen Week-End (Linky obligatoire, résiliation sans frais).",
+    "retrieved_at": "2026-10-26",
+    "valid_from": "2026-09-15",
+    "abo": {
+      "6": 15.86,
+      "9": 19.88,
+      "12": 23.76,
+      "15": 27.4,
+      "18": 31.14,
+      "24": 39.14,
+      "30": 46.47,
+      "36": 53.88
+    },
+    "kwh": {
+      "eco": {
+        "hc": 0.1595,
+        "hp": 0.2142
+      },
+      "sobriete": {
+        "hc": 0.2142,
+        "hp": 0.7467
+      }
+    },
+    "jours_sobriete": 20,
+    "jours_eco": 345,
+    "heures_creuses_par_jour": 17,
+    "hp": [
+      [
+        8,
+        13
+      ],
+      [
+        18,
+        20
+      ]
+    ],
+    "annonce": "16:00",
+    "revision_par_an": 2
+  },
   "sources": {
     "grilleEdf": {
       "url": "https://particulier.edf.fr/content/dam/2-Actifs/Documents/Offres/Grille_prix_Tarif_Bleu.pdf",
@@ -250,6 +314,83 @@
       "label": {
         "fr": "Service-public.fr, fiche F18116 : choisir un fournisseur d'électricité ou en changer",
         "en": "Service-public.fr, sheet F18116: choosing or changing your electricity supplier"
+      }
+    },
+    "grilleEjp": {
+      "url": "https://particulier.edf.fr/content/dam/2-Actifs/Documents/Offres/Grille_prix_EJP.pdf",
+      "label": {
+        "fr": "EDF, grille de prix « Tarif Bleu - Option EJP » applicable au 1er août 2026 (prix TTC, option en extinction)",
+        "en": "EDF, « Tarif Bleu - EJP option » price grid applicable from 1 August 2026 (prices incl. tax, option closed to new customers)"
+      }
+    },
+    "edfEjpJours": {
+      "url": "https://particulier.edf.fr/fr/accueil/gestion-contrat/options/ejp.html",
+      "label": {
+        "fr": "EDF, Connaître les prochains jours EJP (mise à jour vers 14 h, valable pour toutes les zones EJP)",
+        "en": "EDF, upcoming EJP days (updated around 14:00, valid for every EJP zone)"
+      }
+    },
+    "edfEjpOption": {
+      "url": "https://particulier.edf.fr/fr/accueil/gestion-contrat/options/ejp/details.html",
+      "label": {
+        "fr": "EDF, Qu'est-ce que l'option EJP ? (22 jours entre le 1er novembre et le 31 mars, option fermée à la souscription)",
+        "en": "EDF, What is the EJP option? (22 days between 1 November and 31 March, closed to new customers)"
+      }
+    },
+    "ecowatt": {
+      "url": "https://www.monecowatt.fr/",
+      "label": {
+        "fr": "RTE et ADEME, MonEcoWatt : la météo de l'électricité (signaux vert, orange et rouge)",
+        "en": "RTE and ADEME, MonEcoWatt: the electricity weather forecast (green, orange and red signals)"
+      }
+    },
+    "ecowattSignaux": {
+      "url": "https://www.monecowatt.fr/faqs/comment-sont-calcul%C3%A9s-les-signaux",
+      "label": {
+        "fr": "RTE, MonEcoWatt, questions fréquentes : comment sont calculés les signaux ?",
+        "en": "RTE, MonEcoWatt FAQ: how are the signals worked out? (in French)"
+      }
+    },
+    "ecowattAlerte": {
+      "url": "https://www.monecowatt.fr/faqs/comment-fonctionne-le-syst%C3%A8me-d%E2%80%99alerte-ecowatt",
+      "label": {
+        "fr": "RTE, MonEcoWatt, questions fréquentes : comment fonctionne le système d'alerte EcoWatt ? (gestes entre 7 h et 11 h et entre 18 h et 20 h)",
+        "en": "RTE, MonEcoWatt FAQ: how the EcoWatt alert system works (actions between 07:00-11:00 and 18:00-20:00, in French)"
+      }
+    },
+    "ecowattApi": {
+      "url": "https://data.rte-france.com/catalog/-/api/consumption/Ecowatt/v5.0",
+      "label": {
+        "fr": "RTE, portail data : API Ecowatt v5.0 (compte et application à créer pour l'utiliser)",
+        "en": "RTE data portal: Ecowatt API v5.0 (an account and an application are needed to use it)"
+      }
+    },
+    "zenFlex": {
+      "url": "https://particulier.edf.fr/fr/accueil/electricite-gaz/zen-flex.html",
+      "label": {
+        "fr": "EDF, offre Zen Week-End - Option Flex : jours Éco, Sobriété et Bonus",
+        "en": "EDF, Zen Week-End - Flex option offer: Eco, Sobriety and Bonus days (in French)"
+      }
+    },
+    "grilleZen": {
+      "url": "https://particulier.edf.fr/content/dam/2-Actifs/Documents/Offres/grille-prix-zen-week-end.pdf",
+      "label": {
+        "fr": "EDF, grille de prix de l'offre « Zen Week-End » applicable à compter du 15 septembre 2026 (options Week-End, Heures Creuses + WE et Flex, TTC)",
+        "en": "EDF, « Zen Week-End » price grid applicable from 15 September 2026 (Week-End, Off-peak + WE and Flex options, incl. tax)"
+      }
+    },
+    "presZenFlex": {
+      "url": "https://particulier.edf.fr/content/dam/2-Actifs/Documents/Offres/Presentation-zen-flex.pdf",
+      "label": {
+        "fr": "EDF, fiche de présentation de l'offre Zen Week-End - Option Flex (heures pleines 8 h - 13 h et 18 h - 20 h, 20 jours Sobriété)",
+        "en": "EDF, presentation sheet of the Zen Week-End - Flex option (peak 08:00-13:00 and 18:00-20:00, 20 Sobriety days)"
+      }
+    },
+    "ficheZen": {
+      "url": "https://particulier.edf.fr/content/dam/2-Actifs/Documents/Offres/fiche-descriptive-zen-week-end.pdf",
+      "label": {
+        "fr": "EDF, fiche descriptive de l'offre Zen Week-End (offre de marché, prix HT révisables deux fois par an, Linky requis)",
+        "en": "EDF, Zen Week-End offer description sheet (market offer, pre-tax prices revisable twice a year, Linky required)"
       }
     }
   }

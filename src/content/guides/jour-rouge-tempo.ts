@@ -18,7 +18,7 @@ export default defineGuide({
   group: 'tempo',
   order: 10,
   mini: 'appareilRouge',
-  related: ['couleur-tempo-demain', 'jours-tempo-restants', 'chauffage-electrique-tempo', 'jour-blanc-tempo', 'tarif-tempo'],
+  related: ['couleur-tempo-demain', 'jours-tempo-restants', 'chauffage-electrique-tempo', 'jour-blanc-tempo', 'tarif-tempo', 'ecowatt'],
   sources: ['rteCalendrier', 'creTempo2014', 'grilleEdf', 'rteMethode'],
   fr: {
     slug: 'jour-rouge-tempo',
@@ -43,7 +43,7 @@ export default defineGuide({
       const R = h.P.tempo.kwh.R, Q = h.P.tempo_regles;
       return `
 <h2>La veille, dès 10 h 30</h2>
-<p>RTE publie la couleur du lendemain à 10 h 30 sur son ${h.src('rteCalendrier', 'calendrier Tempo')} ; c’est la seule publication qui fait foi. Quand le lendemain est rouge, la soirée qui précède devient précieuse : elle est facturée au prix de la couleur du jour en cours, souvent bleue ou blanche, et chaque tâche avancée échappe aux heures pleines rouges. Faites tourner le lave-vaisselle, lancez une lessive, rechargez la voiture jusqu’au bout et laissez le ballon d’eau chaude chauffer pleinement pendant la nuit.</p>
+<p>RTE publie la couleur du lendemain à 10 h 30 sur son ${h.src('rteCalendrier', 'calendrier Tempo')} ; c’est la seule publication qui fait foi, et le signal ${h.a('ecowatt', 'Ecowatt')} n’y change rien. Quand le lendemain est rouge, la soirée qui précède devient précieuse : elle est facturée au prix de la couleur du jour en cours, souvent bleue ou blanche, et chaque tâche avancée échappe aux heures pleines rouges. Faites tourner le lave-vaisselle, lancez une lessive, rechargez la voiture jusqu’au bout et laissez le ballon d’eau chaude chauffer pleinement pendant la nuit.</p>
 <p>Si votre logement est chauffé à l’électricité, montez d’un degré en fin de soirée et pendant la nuit : la maison emmagasine de la chaleur dans ses murs et ses meubles, que vous consommerez le lendemain sans la payer au prix rouge. L’effet dépend beaucoup de l’isolation, mais il ne coûte presque rien à essayer.</p>
 
 <h2>De 6 h à 22 h : les heures qui coûtent</h2>
@@ -105,7 +105,7 @@ ${h.table(['Organisation de la journée', 'Part la nuit', 'Énergie', 'Coût de 
       const R = h.P.tempo.kwh.R, Q = h.P.tempo_regles;
       return `
 <h2>The day before, from 10:30</h2>
-<p>RTE publishes the next day’s colour at 10:30 on its ${h.src('rteCalendrier', 'Tempo calendar')}, the only binding source. When tomorrow is red, the evening before becomes valuable: it is billed at the current day’s colour, often blue or white, and every task brought forward escapes red peak prices. Run the dishwasher, start a wash, charge the car to full and let the water heater heat up completely overnight.</p>
+<p>RTE publishes the next day’s colour at 10:30 on its ${h.src('rteCalendrier', 'Tempo calendar')}, the only binding source, which the ${h.a('ecowatt', 'Ecowatt')} signal does not change. When tomorrow is red, the evening before becomes valuable: it is billed at the current day’s colour, often blue or white, and every task brought forward escapes red peak prices. Run the dishwasher, start a wash, charge the car to full and let the water heater heat up completely overnight.</p>
 <p>If your home is electrically heated, raise the temperature by a degree late in the evening and overnight: the house stores heat in its walls and furniture, which you then use the next day without paying the red price for it. How well this works depends a great deal on insulation, but it costs almost nothing to try.</p>
 
 <h2>From 06:00 to 22:00: the expensive hours</h2>
