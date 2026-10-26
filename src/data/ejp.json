@@ -2,7 +2,7 @@
  "_lisezmoi": "Jours EJP (Effacement Jours de Pointe) annoncés par EDF, lus sur le service qui alimente la page « Connaître les prochains jours EJP » d’EDF. Une entrée par saison (1er novembre - 31 mars) : quota, jours tirés selon EDF, état, et liste des jours EJP relevés jusqu’à « releve_jusqu_au ». Information non contractuelle selon EDF, valable pour toutes les zones EJP. Fichier réécrit par scripts/data/fetch-ejp.mjs ; ne pas modifier à la main.",
  "source": "https://particulier.edf.fr/fr/accueil/gestion-contrat/options/ejp.html",
  "fetched_at": "2026-10-26T09:20:53.998Z",
- "fetched_ok": true,
+ "fetched_ok": false,
  "seasons": {
   "2019-2020": {
    "jours": 15,
