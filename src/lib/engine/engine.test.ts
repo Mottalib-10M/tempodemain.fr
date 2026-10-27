@@ -93,6 +93,39 @@ describe('Calendrier Tempo publié par RTE', () => {
   it('couleurs connues : 4 décembre 2014 premier rouge choisi par RTE', () => { expect(M.colour('2014-12-04')).toBe('R'); expect(M.seasonStats(2014).premierRouge).toBe('2014-12-04'); });
 });
 
+describe('Accise, chèque énergie, Linky, offre de marché', () => {
+  it('accise : 30,62 €/MWh au 1er août 2026, cohérente avec la grille EDF (3,062 c€/kWh)', () => {
+    expect(M.P.accise.aout_2026 / 1000).toBeCloseTo(M.P.taxes.accise_kwh_htva, 8);
+    // 5 000 kWh × 0,03062 = 153,10 € HT, + 20 % de TVA = 183,72 €
+    const a = M.accisePayee(5000);
+    expect(a.ht).toBeCloseTo(153.1, 6); expect(a.ttc).toBeCloseTo(183.72, 6);
+  });
+  it('unités de consommation : exemple de service-public.fr, 2 parents et 2 enfants = 2,1 UC', () => {
+    expect(M.ucFoyer(2, 2)).toBeCloseTo(2.1, 9);
+    expect(M.ucFoyer(1, 0)).toBe(1);
+    expect(M.ucFoyer(1, 1)).toBeCloseTo(1.5, 9);
+    expect(M.ucFoyer(2, 0)).toBeCloseTo(1.5, 9);
+  });
+  it('chèque énergie : barème de l’arrêté du 31 juillet 2025', () => {
+    expect(M.chequeEnergie(48000, 2.1).eligible).toBe(false); // 22 857 € par UC, exemple service-public.fr
+    expect(M.chequeEnergie(5000, 1).montant).toBe(194);
+    expect(M.chequeEnergie(5700, 1).montant).toBe(146); // 5 700 € pile : tranche suivante
+    expect(M.chequeEnergie(10000, 1.5).montant).toBe(176); // 6 667 € par UC
+    expect(M.chequeEnergie(21000, 2.1).montant).toBe(76); // 10 000 € par UC
+    expect(M.chequeEnergie(11000, 1).eligible).toBe(false);
+  });
+  it('sans Linky : 40,08 € HT, + 25,62 € HT sans index depuis 12 mois, TVA 20 %', () => {
+    expect(M.surcoutSansLinky(true).ttc).toBeCloseTo(48.096, 6);
+    expect(M.surcoutSansLinky(false).ttc).toBeCloseTo(78.84, 6);
+  });
+  it('offre remisée de 10 % sur le kWh HT, Base 6 kVA, 5 000 kWh', () => {
+    // (0,2001 - 0,03062 × 1,2) × 5 000 × 10 % = 81,678 €
+    const r = M.offreRemisee('base', { kwh: 5000, kva: 6, chauffage: 0, partHC: 0.35 }, 0.1);
+    expect(r.gain).toBeCloseTo(81.678, 6);
+    expect(M.offreRemisee('base', { kwh: 5000, kva: 6, chauffage: 0, partHC: 0.35 }, 0, 1).gain).toBeCloseTo(-12, 9);
+  });
+});
+
 describe('Mini-simulateurs', () => {
   for (const kind of Object.keys(MINIS)) for (const l of ['fr', 'en'] as const) {
     it(`${kind} (${l}) rend un résultat sans valeur manquante`, () => {

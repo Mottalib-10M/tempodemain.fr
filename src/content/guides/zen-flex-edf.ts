@@ -12,7 +12,7 @@ export default defineGuide({
   order: 16,
   mini: 'zenFlex',
   miniHref: 'comparateur',
-  related: ['comparateur', 'tarif-tempo', 'tempo-rentable', 'ecowatt', 'ejp-demain'],
+  related: ['comparateur', 'tarif-tempo', 'tempo-rentable', 'ecowatt', 'ejp-demain', 'tarif-reglemente-offre-marche'],
   sources: ['zenFlex', 'grilleZen', 'presZenFlex', 'ficheZen', 'grilleEdf'],
   fr: {
     slug: 'zen-flex-edf',

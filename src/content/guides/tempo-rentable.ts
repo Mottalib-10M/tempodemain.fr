@@ -19,7 +19,7 @@ export default defineGuide({
   group: 'choisir',
   order: 14,
   mini: 'seuilTempo',
-  related: ['comparateur', 'chauffage-electrique-tempo', 'tarif-tempo', 'jour-rouge-tempo', 'prix-kwh'],
+  related: ['comparateur', 'chauffage-electrique-tempo', 'tarif-tempo', 'jour-rouge-tempo', 'prix-kwh', 'avis-tempo-edf'],
   sources: ['grilleEdf', 'creTrve2026', 'eco2mix'],
   fr: {
     slug: 'tempo-rentable',

@@ -12,7 +12,7 @@ export default defineGuide({
   group: 'choisir',
   order: 2,
   tool: 'prixKwh',
-  related: ['comparateur', 'tarif-tempo', 'puissance-compteur', 'heures-creuses', 'home'],
+  related: ['comparateur', 'tarif-tempo', 'puissance-compteur', 'heures-creuses', 'home', 'accise-electricite', 'tarif-reglemente-offre-marche', 'cheque-energie'],
   sources: ['grilleEdf', 'creTrve2026', 'creHc2026'],
   fr: {
     slug: 'prix-kwh-tarif-bleu',
@@ -47,7 +47,7 @@ ${h.table(['Consommation', 'Puissance', 'Base', 'Heures creuses', 'Tempo', 'La m
 <ul>
 <li>La fourniture d’énergie et la commercialisation, calculées par la CRE par empilement des coûts.</li>
 <li>L’acheminement sur les réseaux de transport et de distribution, le TURPE : avec l’entrée en vigueur du nouveau mécanisme de capacité, c’est l’un des deux postes qui expliquent la hausse d’août 2026 selon la CRE.</li>
-<li>L’accise sur l’électricité, ${h.kwh(h.P.taxes.accise_kwh_htva)} par kWh hors TVA, anciennement appelée CSPE.</li>
+<li>L’${h.a('accise-electricite', 'accise sur l’électricité')}, ${h.kwh(h.P.taxes.accise_kwh_htva)} par kWh hors TVA, anciennement appelée CSPE.</li>
 <li>La contribution tarifaire d’acheminement (CTA), assise sur la part fixe de l’acheminement.</li>
 <li>La TVA à ${h.pct(h.P.taxes.tva, 0)}, sur l’abonnement comme sur les consommations et les autres taxes.</li>
 </ul>
@@ -87,7 +87,7 @@ ${h.table(['Consumption', 'Power', 'Base', 'Off-peak', 'Tempo', 'Cheapest'], Mo.
 <ul>
 <li>Energy supply and retail costs, worked out by the regulator by adding up each cost block.</li>
 <li>Transmission and distribution network charges, the TURPE: with the new capacity mechanism coming into force, it is one of the two items behind the August 2026 rise, according to the regulator.</li>
-<li>The electricity excise duty, ${h.kwh(h.P.taxes.accise_kwh_htva)} per kWh before VAT, formerly known as the CSPE.</li>
+<li>The ${h.a('accise-electricite', 'electricity excise duty')}, ${h.kwh(h.P.taxes.accise_kwh_htva)} per kWh before VAT, formerly known as the CSPE.</li>
 <li>The network access contribution (CTA), levied on the fixed part of the network charge.</li>
 <li>VAT at ${h.pct(h.P.taxes.tva, 0)}, on the standing charge as on consumption and the other taxes.</li>
 </ul>

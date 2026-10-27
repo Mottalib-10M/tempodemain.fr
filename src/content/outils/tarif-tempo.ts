@@ -9,7 +9,7 @@ export default defineGuide({
   group: 'tempo',
   order: 4,
   tool: 'tarifTempo',
-  related: ['comparateur', 'prix-kwh', 'jours-tempo-restants', 'tempo-rentable', 'puissance-compteur', 'ejp-demain', 'zen-flex-edf'],
+  related: ['comparateur', 'prix-kwh', 'jours-tempo-restants', 'tempo-rentable', 'puissance-compteur', 'ejp-demain', 'zen-flex-edf', 'avis-tempo-edf'],
   sources: ['grilleEdf', 'creTrve2026', 'creTempo2014', 'rteCalendrier'],
   fr: {
     slug: 'tarif-tempo',

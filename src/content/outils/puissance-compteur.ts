@@ -13,7 +13,7 @@ export default defineGuide({
   group: 'choisir',
   order: 3,
   tool: 'puissance',
-  related: ['comparateur', 'prix-kwh', 'recharge-voiture-tempo', 'consommation-appareils', 'chauffage-electrique-tempo'],
+  related: ['comparateur', 'prix-kwh', 'recharge-voiture-tempo', 'consommation-appareils', 'chauffage-electrique-tempo', 'compteur-linky'],
   sources: ['grilleEdf', 'creTrve2026', 'creTempo2014'],
   fr: {
     slug: 'puissance-compteur',

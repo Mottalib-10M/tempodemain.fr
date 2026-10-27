@@ -392,6 +392,173 @@
         "fr": "EDF, fiche descriptive de l'offre Zen Week-End (offre de marché, prix HT révisables deux fois par an, Linky requis)",
         "en": "EDF, Zen Week-End offer description sheet (market offer, pre-tax prices revisable twice a year, Linky required)"
       }
+    },
+    "bofipAccise2026": {
+      "url": "https://bofip.impots.gouv.fr/bofip/14903-PGP.html",
+      "label": {
+        "fr": "BOFiP-Impôts, actualité : modalités pratiques d'application des tarifs d'accise sur l'électricité et les combustibles à compter du 1er janvier 2026 (30,85 €/MWh au 1er février 2026)",
+        "en": "BOFiP (French tax administration), news item on applying the electricity and fuel excise rates from 1 January 2026 (€30.85/MWh from 1 February 2026)"
+      }
+    },
+    "chequeArrete": {
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052019353",
+      "label": {
+        "fr": "Légifrance, arrêté du 31 juillet 2025 fixant les critères d'éligibilité au chèque énergie (plafond de 11 000 € par UC et barème, articles 1 et 2)",
+        "en": "Légifrance, order of 31 July 2025 setting the chèque énergie eligibility criteria (€11,000 per consumption unit ceiling and amount scale, articles 1 and 2)"
+      }
+    },
+    "chequeDecret": {
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000052019139",
+      "label": {
+        "fr": "Légifrance, décret n° 2025-735 du 31 juillet 2025 modifiant les modalités de mise en œuvre du chèque énergie (articles R. 124-1 et suivants du code de l'énergie)",
+        "en": "Légifrance, decree no. 2025-735 of 31 July 2025 amending how the chèque énergie is run (articles R. 124-1 ff. of the Energy Code)"
+      }
+    },
+    "spCheque": {
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33667",
+      "label": {
+        "fr": "Service-public.fr, fiche F33667 : chèque énergie (unités de consommation, montants, utilisation, validité)",
+        "en": "Service-public.fr, sheet F33667: chèque énergie (consumption units, amounts, how to use it, validity)"
+      }
+    },
+    "mneCheque": {
+      "url": "https://www.energie-info.fr/fiche_pratique/cheque-energie/",
+      "label": {
+        "fr": "Médiateur national de l'énergie (energie-info.fr), fiche « Chèque énergie » : calendrier 2026, revenu fiscal de référence 2025, paiement et droits associés",
+        "en": "National energy ombudsman (energie-info.fr), « Chèque énergie » sheet: 2026 timetable, 2025 reference tax income, payment and linked rights"
+      }
+    },
+    "chequeEnergie": {
+      "url": "https://chequeenergie.gouv.fr/beneficiaire/cheque/paiement-en-ligne",
+      "label": {
+        "fr": "chequeenergie.gouv.fr, site officiel du chèque énergie : paiement en ligne et espace bénéficiaire",
+        "en": "chequeenergie.gouv.fr, the official chèque énergie site: online payment and beneficiary account"
+      }
+    },
+    "enedisLinky": {
+      "url": "https://www.enedis.fr/reussir-la-transition-ecologique/linky-un-allie-pour-piloter-sa-consommation-d-electricite",
+      "label": {
+        "fr": "Enedis, Linky, un allié pour piloter sa consommation d'électricité (38,4 millions de compteurs, 96 % des foyers)",
+        "en": "Enedis, Linky as a tool to manage your electricity use (38.4 million meters, 96% of households)"
+      }
+    },
+    "enedisSansLinky": {
+      "url": "https://www.enedis.fr/faq/compteur-linky/je-nai-pas-de-compteur-linky-quelles-sont-les-consequences",
+      "label": {
+        "fr": "Enedis, FAQ : je n'ai pas de compteur Linky, quelles sont les conséquences ? (prix des prestations avec et sans Linky)",
+        "en": "Enedis FAQ: no Linky meter, what are the consequences? (service prices with and without Linky)"
+      }
+    },
+    "enedisReleve": {
+      "url": "https://www.enedis.fr/faq/compteur-electrique/dois-je-payer-pour-faire-le-releve-de-mon-compteur-enedis",
+      "label": {
+        "fr": "Enedis, FAQ : dois-je payer pour faire le relevé de mon compteur ? (composante des compteurs d'ancienne génération, délibération CRE n° 2025-78)",
+        "en": "Enedis FAQ: do I pay for my meter reading? (charge for old-generation meters, CRE deliberation no. 2025-78)"
+      }
+    },
+    "enedisDuree": {
+      "url": "https://www.enedis.fr/faq/compteur-linky/quelle-est-la-duree-de-vie-du-compteur-linky",
+      "label": {
+        "fr": "Enedis, FAQ : quelle est la durée de vie du compteur Linky ? (au moins 20 ans)",
+        "en": "Enedis FAQ: how long does a Linky meter last? (at least 20 years)"
+      }
+    },
+    "mneRetourTrv": {
+      "url": "https://www.energie-info.fr/fiche_pratique/puis-je-revenir-au-tarif-reglemente-apres-avoir-souscrit-une-offre-de-marche/",
+      "label": {
+        "fr": "Médiateur national de l'énergie (energie-info.fr), fiche : puis-je revenir au tarif réglementé après avoir souscrit une offre de marché ?",
+        "en": "National energy ombudsman (energie-info.fr): can I go back to the regulated tariff after taking a market offer?"
+      }
+    },
+    "mneComparateur": {
+      "url": "https://comparateur.energie-info.fr/",
+      "label": {
+        "fr": "Médiateur national de l'énergie, comparateur officiel des offres d'électricité et de gaz",
+        "en": "National energy ombudsman, official electricity and gas offer comparison tool"
+      }
+    }
+  },
+  "accise": {
+    "_lisezmoi": "Accise sur l'électricité, catégorie « ménages et assimilés » (puissance souscrite jusqu'à 36 kVA), en €/MWh hors TVA, majoration ZNI comprise. Février 2026 : BOFiP, actualité « Modalités pratiques d'application des tarifs d'accise sur l'électricité et les combustibles à compter du 1er janvier 2026 » (25,19 €/MWh avant majoration ZNI, 30,85 €/MWh après), lue le 2026-10-27. Août 2026 : délibération CRE n° 2026-147 du 15 juillet 2026 (30,85 → 30,62 €/MWh) et grille EDF Tarif Bleu du 1er août 2026 (3,062 c€/kWh HTVA), lues le 2026-10-27. Février 2027 : nouvelle baisse prévue par l'article 71 de la loi de finances pour 2026, montant non publié au 2026-10-27.",
+    "retrieved_at": "2026-10-27",
+    "janvier_2026_avant_majoration": 25.09,
+    "fevrier_2026_avant_majoration": 25.19,
+    "fevrier_2026": 30.85,
+    "aout_2026": 30.62
+  },
+  "cheque_energie": {
+    "_lisezmoi": "Chèque énergie 2026. Barème : arrêté du 31 juillet 2025 (JORF n° 177 du 1er août 2025), articles 1 et 2 (plafond 11 000 € de RFR par UC, montants TTC par tranche et par nombre d'UC) ; unités de consommation : article R. 124-1 du code de l'énergie (décret n° 2025-735), repris par service-public.fr F33667. Calendrier 2026 : fiche « Chèque énergie » du médiateur national de l'énergie (energie-info.fr), lue le 2026-10-27 : RFR 2025 sur les revenus 2024, envoi en avril 2026, seconde vague en mai 2026. Validité : 31 mars de l'année suivante pour un chèque émis avant le 1er septembre (F33667).",
+    "retrieved_at": "2026-10-27",
+    "annee": 2026,
+    "rfr_annee": 2025,
+    "revenus_annee": 2024,
+    "plafond_rfr_uc": 11000,
+    "seuils": [
+      5700,
+      6800,
+      7850,
+      11000
+    ],
+    "montants": {
+      "un": [
+        194,
+        146,
+        98,
+        48
+      ],
+      "entre": [
+        240,
+        176,
+        113,
+        63
+      ],
+      "deux": [
+        277,
+        202,
+        126,
+        76
+      ]
+    },
+    "uc": {
+      "premier": 1,
+      "second": 0.5,
+      "autres": 0.3
+    },
+    "aide_specifique": 192,
+    "moyenne_2025": 150,
+    "fin_validite": "2027-03-31",
+    "droits_jusqu_au": "2027-04-30",
+    "numero_vert": "0 805 204 805"
+  },
+  "linky": {
+    "_lisezmoi": "Compteur Linky. Parc : page Enedis « Linky, un allié pour piloter sa consommation d'électricité » (96 % des foyers, 38,4 millions de compteurs), lue le 2026-10-27. Durée de vie : FAQ Enedis (au moins 20 ans, contrôle par échantillonnage tous les 10 ans). Prix de prestations avec et sans Linky (€ TTC) : FAQ Enedis « Je n'ai pas de compteur Linky, quelles sont les conséquences ? », lue le 2026-10-27. Majorations annuelles HT : grille EDF Tarif Bleu du 1er août 2026 (taxes.majoration_sans_linky_an_ht et taxes.majoration_sans_index_an_ht).",
+    "retrieved_at": "2026-10-27",
+    "compteurs": 38400000,
+    "part_foyers": 0.96,
+    "deploiement_depuis": 2015,
+    "duree_vie_ans": 20,
+    "controle_ans": 10,
+    "prestations_ttc": {
+      "mise_en_service": {
+        "linky": 1.66,
+        "ancien": 30.37
+      },
+      "teleinfo": {
+        "linky": 0,
+        "ancien": 34.22
+      },
+      "reduction_puissance": {
+        "linky": 3.68,
+        "ancien": 57.7
+      },
+      "suspension": {
+        "linky": 40.6,
+        "ancien": 57.7
+      },
+      "releve_special": {
+        "linky": 0,
+        "ancien": 34.22
+      }
     }
   }
 }
