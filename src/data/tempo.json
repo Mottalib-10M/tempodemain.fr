@@ -2,7 +2,7 @@
  "_lisezmoi": "Couleurs Tempo publiées par RTE (services-rte.com, données ouvertes de la page Calendrier Tempo). Une chaîne par saison, 1 caractère par jour depuis le 1er septembre : B bleu, W blanc, R rouge, ? non publié. Fichier réécrit par scripts/data/fetch-tempo.mjs ; ne pas modifier à la main.",
  "source": "https://www.services-rte.com/fr/visualisez-les-donnees-publiees-par-rte/calendrier-des-offres-de-fourniture-de-type-tempo.html",
  "api": "https://www.services-rte.com/cms/open_data/v1/tempo?season=2026-2027",
- "fetched_at": "2026-10-27T14:56:31.222Z",
+ "fetched_at": "2026-10-27T15:34:53.226Z",
  "fetched_ok": true,
  "seasons": {
   "2014-2015": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBWWWRWWBWWWWBBBWWWBBBBBBBBWBBRRRWWBBRRRWBBBWWWBWWBRRRRRWBRRWWWWBRRRRRWBRRRWWBBWWWWBBBBWWBBBBBBWWBBBBBBBBBBWBBBBBBWWWWBBBBBBBBBBBWBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
