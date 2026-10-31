@@ -50,9 +50,13 @@ export function isHoliday(d: string) {
   const y = Number(d.slice(0, 4)), e = easter(y);
   return [1, 39, 50].some((n) => addDays(e, n) === d);
 }
-/** Le jour peut-il être rouge ? Du 1er novembre au 31 mars, hors samedi, dimanche et fériés. */
+/**
+ * Le jour peut-il être rouge ? Du 1er novembre au 31 mars, hors samedi, dimanche et fériés ;
+ * à partir du 1er novembre 2026, jamais le 24 ni le 31 décembre (délibération CRE n° 2026-189).
+ */
 export function redPossible(d: string) {
-  const m = Number(d.slice(5, 7)), w = weekday(d);
+  const m = Number(d.slice(5, 7)), w = weekday(d), R = P.tempo_regles;
+  if (d >= R.rouge_pp_depuis && R.rouge_exclus.includes(d.slice(5))) return false;
   return (m >= 11 || m <= 3) && w !== 0 && w !== 6 && !isHoliday(d);
 }
 /** Le jour peut-il être blanc ? Toute l'année sauf le dimanche. */

@@ -25,7 +25,7 @@ const path = route('home', lang);
 const parts = x.body(H).split(/<!--mini:([A-Za-z0-9_]+)-->/);
 const resume = x.resume(H);
 const faqs = x.faqs(H);
-const keys: SourceKey[] = ['spTrve2026', 'spFournisseur', 'rteCalendrier', 'rteMethode', 'creTempo2014', 'grilleEdf', 'creTrve2026', 'creHc2026', 'enedisHc', 'eco2mix'];
+const keys: SourceKey[] = ['spTrve2026', 'spFournisseur', 'rteCalendrier', 'rteMethode', 'creTempo2014', 'cre2026189', 'grilleEdf', 'creTrve2026', 'creHc2026', 'enedisHc', 'eco2mix'];
 const sources = keys.map((k) => ({ name: P.sources[k].label[lang], url: P.sources[k].url }));
 const jsonLd = [websiteSchema(lang), organizationSchema(lang), webPageSchema({ name: x.h1, description: x.description, path, lang }), webApplicationSchema({ name: x.h1, description: x.description, path, lang }), faqSchema(faqs, lang)];
 const fr = lang === 'fr';

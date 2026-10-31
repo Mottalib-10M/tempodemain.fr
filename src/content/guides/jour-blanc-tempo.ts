@@ -28,7 +28,7 @@ export default defineGuide({
   order: 11,
   mini: 'jourBlanc',
   related: ['jour-rouge-tempo', 'historique-tempo', 'jours-tempo-restants', 'tarif-tempo'],
-  sources: ['creTempo2014', 'rteCalendrier', 'grilleEdf'],
+  sources: ['creTempo2014', 'cre2026189', 'rteCalendrier', 'grilleEdf'],
   fr: {
     slug: 'jour-blanc-tempo',
     nav: 'Les jours blancs',
@@ -54,7 +54,7 @@ export default defineGuide({
       return `
 <h2>Ce que dit la règle</h2>
 <p>La ${h.src('creTempo2014', 'délibération de la CRE de 2014')} qui confie à RTE le choix des jours fixe deux contraintes seulement pour les jours blancs : il y en a ${h.num(h.P.tempo_regles.jours_blancs)} par saison, et aucun ne tombe un dimanche. Contrairement aux rouges, ils ne sont limités ni à l’hiver, ni aux jours ouvrés, ni à une durée maximale d’enchaînement. RTE les publie de la même façon, la veille à 10 h 30, sur son ${h.src('rteCalendrier', 'calendrier Tempo')}.</p>
-<p>Le jour blanc sert de tampon. Quand la consommation nette dépasse le premier seuil de l’algorithme sans atteindre le second, la journée devient blanche ; quand elle dépasse les deux, elle devient rouge, à condition d’être un jour de semaine entre novembre et mars. Un samedi très froid peut donc devenir blanc là où un mardi identique aurait été rouge.</p>
+<p>Le jour blanc sert de tampon. Quand la consommation nette dépasse le seuil blanc de l’algorithme sans que la journée soit tirée en rouge, elle devient blanche. Les rouges, eux, ne tombent qu’un jour de semaine entre novembre et mars et, depuis le 1er novembre 2026, sont tirés selon la méthode des jours de pointe du mécanisme de capacité (${h.src('cre2026189', 'délibération de la CRE du 21 octobre 2026')}) ; les blancs restent choisis par l’algorithme habituel. Un samedi très froid peut donc devenir blanc là où un mardi identique aurait été rouge.</p>
 
 <h2>Où tombent vraiment les jours blancs</h2>
 <p>Le calendrier publié par RTE depuis 2014 permet de compter, saison par saison, la date du premier jour blanc et le nombre de blancs tombés un samedi.</p>
@@ -78,7 +78,7 @@ ${h.table(['Journée de', 'Bleue', 'Blanche', 'Rouge', 'En Base (6 kVA)'], [15, 
 <p>La colonne blanche reste proche de la colonne Base, tandis que la colonne rouge s’en écarte nettement. Pour la facture d’une année, les jours blancs comptent donc surtout par leur nombre, pas par leur prix.</p>
 
 <h2>Ce que le jour blanc annonce</h2>
-<p>Un jour blanc n’est pas seulement un tarif : c’est un signal sur l’état du réseau. Il veut dire que la consommation nette prévue par RTE dépasse le premier seuil de son algorithme. Dans chaque saison publiée depuis 2014, le premier jour blanc est tombé avant le premier rouge, de quelques jours à plusieurs semaines plus tôt. C’est un bon moment pour vérifier les réglages : programmation du thermostat, horaires du ballon, heure de départ de la recharge, et l’abonnement aux alertes de votre fournisseur.</p>
+<p>Un jour blanc n’est pas seulement un tarif : c’est un signal sur l’état du réseau. Il veut dire que la consommation nette prévue par RTE dépasse le seuil blanc de son algorithme. Dans chaque saison publiée depuis 2014, le premier jour blanc est tombé avant le premier rouge, de quelques jours à plusieurs semaines plus tôt. C’est un bon moment pour vérifier les réglages : programmation du thermostat, horaires du ballon, heure de départ de la recharge, et l’abonnement aux alertes de votre fournisseur.</p>
 <p>À l’inverse, au printemps, les blancs servent à écouler le stock de la saison. Le froid recule, mais RTE doit avoir placé ses ${h.num(h.P.tempo_regles.jours_blancs)} jours avant le 31 août. Le tableau des mois montre que ces blancs tardifs restent rares en mai et juin, et absents des mois d’été dans l’historique publié.</p>
 
 <h2>Samedi blanc et vie de famille</h2>
@@ -113,7 +113,7 @@ ${h.table(['Journée de', 'Bleue', 'Blanche', 'Rouge', 'En Base (6 kVA)'], [15, 
       return `
 <h2>What the rule says</h2>
 <p>The ${h.src('creTempo2014', 'regulator’s 2014 deliberation')} that gave RTE the job of choosing the days sets only two constraints for white days: there are ${h.num(h.P.tempo_regles.jours_blancs)} per season, and none falls on a Sunday. Unlike red days they are not limited to winter, to weekdays or to a maximum run. RTE publishes them the same way, at 10:30 the day before, on its ${h.src('rteCalendrier', 'Tempo calendar')}.</p>
-<p>The white day acts as a buffer. When net demand passes the algorithm’s first threshold without reaching the second, the day turns white; when it passes both, it turns red, provided it is a weekday between November and March. A bitterly cold Saturday can therefore become white where an identical Tuesday would have been red.</p>
+<p>The white day acts as a buffer. When net demand passes the algorithm’s white threshold and the day is not drawn red, it turns white. Red days only fall on weekdays between November and March and, since 1 November 2026, are drawn with the capacity mechanism’s peak-day method (${h.src('cre2026189', 'CRE deliberation of 21 October 2026')}); white days are still chosen by the usual algorithm. A bitterly cold Saturday can therefore become white where an identical Tuesday would have been red.</p>
 
 <h2>Where white days really fall</h2>
 <p>The calendar RTE has published since 2014 lets us count, season by season, the date of the first white day and how many white days fell on a Saturday.</p>
@@ -137,7 +137,7 @@ ${h.table(['A day of', 'Blue', 'White', 'Red', 'On Base (6 kVA)'], [15, 30, 50].
 <p>The white column stays close to the Base column, while the red one pulls well away from it. For a year’s bill, white days therefore count mainly through their number, not their price.</p>
 
 <h2>What a white day signals</h2>
-<p>A white day is not just a price: it is a signal about the state of the grid. It means the net demand RTE forecasts has crossed the first threshold of its algorithm. In every season published since 2014, the first white day came before the first red one, anywhere from a few days to several weeks earlier. It is a good moment to check your settings: thermostat schedule, water heater times, charging start time, and your supplier’s alerts.</p>
+<p>A white day is not just a price: it is a signal about the state of the grid. It means the net demand RTE forecasts has crossed the white threshold of its algorithm. In every season published since 2014, the first white day came before the first red one, anywhere from a few days to several weeks earlier. It is a good moment to check your settings: thermostat schedule, water heater times, charging start time, and your supplier’s alerts.</p>
 <p>In spring, on the other hand, white days use up the season’s stock. The cold is easing, but RTE must have placed its ${h.num(h.P.tempo_regles.jours_blancs)} days before 31 August. The month table shows those late white days stay rare in May and June, and absent from the summer months in the published record.</p>
 
 <h2>White Saturdays and family life</h2>

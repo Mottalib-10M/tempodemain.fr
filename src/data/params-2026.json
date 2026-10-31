@@ -107,7 +107,11 @@
       "rouges": 18,
       "blancs": 47,
       "remplacement_depuis": "2020-03-19"
-    }
+    },
+    "_cre_2026_189": "Délibération CRE n° 2026-189 du 21 octobre 2026 (cre2026189), lue le 2026-10-31 : à partir du 1er novembre 2026, jours rouges tirés avec la méthode des jours PP du mécanisme de capacité (couloir mensuel, courbe guide) et jamais le 24 ni le 31 décembre ; jours blancs inchangés (algorithme actuel) ; à partir du 1er novembre 2027, publication du rouge au plus tard une heure après le tirage du jour PP, dès J-2 quand RTE le tire si tôt.",
+    "rouge_pp_depuis": "2026-11-01",
+    "rouge_exclus": ["12-24", "12-31"],
+    "rouge_annonce_j2_depuis": "2027-11-01"
   },
   "heures_creuses": {
     "heures_par_jour": 8,
@@ -251,6 +255,13 @@
       "label": {
         "fr": "CRE, délibération n° 2026-147 du 15 juillet 2026 portant proposition des tarifs réglementés de vente d'électricité au 1er août 2026",
         "en": "CRE (energy regulator), deliberation no. 2026-147 of 15 July 2026 proposing the regulated electricity tariffs from 1 August 2026"
+      }
+    },
+    "cre2026189": {
+      "url": "https://www.cre.fr/fileadmin/Documents/Deliberations/2026/261021_2026-189_algorithme_de_tirage_jours_Tempo.pdf",
+      "label": {
+        "fr": "CRE, délibération n° 2026-189 du 21 octobre 2026 sur le tirage des jours Tempo : jours rouges selon la méthode des jours de pointe, 24 et 31 décembre exclus (lue le 31 octobre 2026)",
+        "en": "CRE (energy regulator), deliberation no. 2026-189 of 21 October 2026 on how Tempo days are drawn: red days by the peak-day method, 24 and 31 December excluded (read 31 October 2026)"
       }
     },
     "rteCalendrier": {

@@ -78,6 +78,14 @@ describe('Calendrier Tempo publié par RTE', () => {
       }
     }
   });
+  // Délibération CRE n° 2026-189 du 21 octobre 2026, décision point 2 (en vigueur le 1er novembre 2026) :
+  // https://www.cre.fr/fileadmin/Documents/Deliberations/2026/261021_2026-189_algorithme_de_tirage_jours_Tempo.pdf
+  it('24 et 31 décembre exclus des rouges à partir de l’hiver 2026-2027, pas avant', () => {
+    expect(M.redPossible('2026-12-24')).toBe(false);
+    expect(M.redPossible('2026-12-31')).toBe(false);
+    expect(M.redPossible('2026-12-23')).toBe(true);
+    expect(M.redPossible('2025-12-31')).toBe(true);
+  });
   it('au plus 5 rouges d’affilée', () => { for (const k of M.seasonKeys()) expect(M.seasonStats(Number(k.slice(0, 4))).serieRouge).toBeLessThanOrEqual(5); });
   it('les restes tiennent dans le calendrier : assez de jours ouvrés pour les rouges restants', () => {
     const y = M.seasonStart(M.lastPublished(Number(M.seasonKeys().at(-1)!.slice(0, 4)))!);
