@@ -44,7 +44,7 @@ ${h.table(['Saison', 'Heures creuses à déplacer', 'Heures à favoriser'], [
   ['Été (1er avril - 31 octobre)', plages(h, H.a_deplacer.ete, 'aucune'), plages(h, H.a_favoriser.ete, 'Libre')],
 ], 'Tableau 4 de la délibération CRE n° 2026-33 du 4 février 2026.', ['l', 'l', 'l'])}
 <p>La même délibération a levé le gel qui interdisait d’attribuer des heures creuses entre 11 h et 14 h aux nouveaux clients. Enedis et RTE ont simulé l’effet de ces heures méridiennes sur le système électrique et conclu que l’hiver passé et l’essor du photovoltaïque permettaient de les accueillir. Tous les répondants à la consultation publique y étaient favorables.</p>
-<h2>Le calendrier, phase par phase</h2>
+<h2>Le calendrier des heures creuses, phase par phase</h2>
 ${h.table(['Phase', 'Période', 'Clients concernés', 'Horaires'], [
   ['1', `${mois(h, p1.de)} - ${mois(h, p1.a)}`, `${h.num(p1.clients / 1e6, 1)} million`, 'identiques été comme hiver'],
   ['2', `${mois(h, p2.de)} - ${mois(h, p2.a)}`, `${h.num(p2.clients / 1e6, 1)} millions`, 'différents l’été et l’hiver'],
@@ -88,7 +88,7 @@ ${h.table(['Season', 'Off-peak hours to move', 'Hours to favour'], [
   ['Summer (1 April - 31 October)', plages(h, H.a_deplacer.ete, 'none'), plages(h, H.a_favoriser.ete, 'Free')],
 ], 'Table 4 of CRE deliberation no. 2026-33 of 4 February 2026.', ['l', 'l', 'l'])}
 <p>The same deliberation lifted the freeze that barred new customers from off-peak hours between 11:00 and 14:00. Enedis and RTE modelled the effect of these midday hours on the power system and concluded that last winter’s supply and the growth of solar allowed them. Every respondent to the public consultation was in favour.</p>
-<h2>The timetable, phase by phase</h2>
+<h2>The off-peak hours timetable, phase by phase</h2>
 ${h.table(['Phase', 'Period', 'Customers', 'Hours'], [
   ['1', `${mois(h, p1.de)} - ${mois(h, p1.a)}`, `${h.num(p1.clients / 1e6, 1)} million`, 'same in summer and winter'],
   ['2', `${mois(h, p2.de)} - ${mois(h, p2.a)}`, `${h.num(p2.clients / 1e6, 1)} million`, 'different in summer and winter'],

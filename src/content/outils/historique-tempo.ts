@@ -30,7 +30,7 @@ export default defineGuide({
     title: 'Historique Tempo 2014-2026 : jours rouges de chaque saison',
     description: 'Historique Tempo de 2014 à 2026 : jours rouges et blancs de chaque saison, premier et dernier rouge, plus longues séries, part du chauffage tombée en rouge.',
     h1: 'Historique des saisons Tempo depuis 2014',
-    intro: 'Chaque hiver depuis que RTE choisit les couleurs : combien de rouges, quand ils sont tombés, et ce qu’ils vous auraient coûté.',
+    intro: 'Chaque hiver depuis que RTE choisit les couleurs Tempo : combien de rouges, quand ils sont tombés, et ce qu’ils vous auraient coûté.',
     resume: (h) => {
       const e = extremes(h), n = h.P.tempo_regles;
       return `RTE choisit les couleurs Tempo depuis le 1er novembre 2014, et la totalité de ses publications reste consultable : ${h.num(e.n)} saisons sont closes, de 2014-2015 à la dernière, et la saison en cours se complète jour après jour. Chaque saison close a compté ${h.num(n.jours_rouges)} jours rouges et ${h.num(n.jours_blancs)} jours blancs, sauf 2019-2020, qui s’est terminée sur ${h.num(n.saison_2019_2020.rouges)} rouges et ${h.num(n.saison_2019_2020.blancs)} blancs après la décision de la CRE de remplacer les rouges par des blancs à partir du 19 mars 2020. Ce qui change vraiment d’un hiver à l’autre, c’est le moment : le premier rouge est tombé dès le ${h.date(e.tot.premierRouge!)} et aussi tard que le ${h.date(e.tardif.premierRouge!)} ; le dernier, entre le ${h.date(e.finTot.dernierRouge!)} et le ${h.date(e.finTard.dernierRouge!)}. Choisissez une saison dans l’outil pour voir son calendrier jour par jour et ce que ses jours rouges auraient ajouté à votre facture, au tarif d’aujourd’hui.`;
@@ -47,7 +47,7 @@ export default defineGuide({
     body: (h) => {
       const S = saisons(h);
       return `
-<h2>Toutes les saisons, une par ligne</h2>
+<h2>Toutes les saisons Tempo, une par ligne</h2>
 ${h.table(['Saison', 'Rouges', 'Blancs', 'Bleus', 'Premier rouge', 'Dernier rouge', 'Plus longue série'], S.map((s) => [
   `<span class="whitespace-nowrap">${s.key}</span>${s.complete ? '' : ' (en cours)'}`, h.num(s.n.R), h.num(s.n.W), h.num(s.n.B),
   s.premierRouge ? h.date(s.premierRouge) : 'aucun encore', s.dernierRouge ? h.date(s.dernierRouge) : 'aucun encore', s.premierRouge ? `${h.num(s.serieRouge)} j` : '',
@@ -69,7 +69,7 @@ ${h.table(['Saison', 'Chauffage en jours rouges', 'Chauffage en jours blancs', '
     title: 'Tempo history 2014-2026: red and white days, every season',
     description: 'Tempo history from 2014 to 2026: red and white days in every season, the first and last red day, longest runs and the share of heating that fell on red days.',
     h1: 'Tempo seasons since 2014',
-    intro: 'Every winter since RTE started choosing the colours: how many red days, when they fell, and what they would have cost you.',
+    intro: 'Every winter since RTE started choosing the Tempo colours: how many red days, when they fell, and what they would have cost you.',
     resume: (h) => {
       const e = extremes(h), n = h.P.tempo_regles;
       return `RTE has chosen the Tempo colours since 1 November 2014, and every one of its publications can still be looked up: ${h.num(e.n)} seasons are complete, from 2014-2015 to the latest, and the current one fills in day by day. Each completed season had ${h.num(n.jours_rouges)} red days and ${h.num(n.jours_blancs)} white days, except 2019-2020, which ended on ${h.num(n.saison_2019_2020.rouges)} red and ${h.num(n.saison_2019_2020.blancs)} white after the energy regulator, the CRE, had red days replaced by white ones from 19 March 2020. What really changes from one winter to the next is timing: the first red day has fallen as early as ${h.date(e.tot.premierRouge!)} and as late as ${h.date(e.tardif.premierRouge!)}; the last one between ${h.date(e.finTot.dernierRouge!)} and ${h.date(e.finTard.dernierRouge!)}. Pick a season in the tool to see its day-by-day calendar and what its red days would have added to your bill at today’s prices.`;
@@ -86,7 +86,7 @@ ${h.table(['Saison', 'Chauffage en jours rouges', 'Chauffage en jours blancs', '
     body: (h) => {
       const S = saisons(h);
       return `
-<h2>Every season, one row each</h2>
+<h2>Every Tempo season, one row each</h2>
 ${h.table(['Season', 'Red', 'White', 'Blue', 'First red', 'Last red', 'Longest run'], S.map((s) => [
   `<span class="whitespace-nowrap">${s.key}</span>${s.complete ? '' : ' (current)'}`, h.num(s.n.R), h.num(s.n.W), h.num(s.n.B),
   s.premierRouge ? h.date(s.premierRouge) : 'none yet', s.dernierRouge ? h.date(s.dernierRouge) : 'none yet', s.premierRouge ? `${h.num(s.serieRouge)} d` : '',

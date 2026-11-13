@@ -21,7 +21,7 @@ export default defineGuide({
     title: 'Zen Flex EDF : jours Sobriété, prix 2026 et face à Tempo',
     description: 'Zen Flex EDF : 345 jours Éco, 20 jours Sobriété annoncés à 16 h, prix de la grille du 15 septembre 2026 et comparaison chiffrée avec l’option Tempo d’EDF.',
     h1: 'Zen Flex d’EDF : jours Éco, jours Sobriété et Tempo',
-    intro: 'Les règles de l’offre, ses prix lus sur la grille d’EDF et le calcul face à Tempo sur votre consommation.',
+    intro: 'Les règles de l’offre Zen Flex, ses prix lus sur la grille d’EDF et le calcul face à Tempo sur votre consommation.',
     resume: (h) => {
       const Z = h.P.zen_flex, T = h.P.tempo.kwh;
       return `Zen Flex est le nom courant de l’offre EDF « Zen Week-End, option Flex », une offre de marché et non un tarif réglementé. Elle découpe l’année en ${Z.jours_eco} jours Éco et ${Z.jours_sobriete} jours Sobriété. Chaque jour, les heures pleines vont de 8 h à 13 h et de 18 h à 20 h ; les ${Z.heures_creuses_par_jour} autres heures sont creuses. Un jour Éco, le kWh coûte ${h.kwh(Z.kwh.eco.hc)} en heures creuses et ${h.kwh(Z.kwh.eco.hp)} en heures pleines. Un jour Sobriété, il passe à ${h.kwh(Z.kwh.sobriete.hc)} en heures creuses et ${h.kwh(Z.kwh.sobriete.hp)} en heures pleines, un peu plus qu’un jour rouge Tempo (${h.kwh(T.R.hp)}). Les jours Sobriété tombent en semaine, hors fériés, du 1er janvier au 15 avril et du 15 octobre au 31 décembre ; EDF les annonce la veille à 16 h. L’offre exige un compteur Linky, ses prix hors taxes peuvent changer deux fois par an et on la quitte sans frais. Face à Tempo, elle se joue sur une question : vos heures de consommation tombent-elles plutôt de 8 h à 13 h et de 18 h à 20 h, ou de 6 h à 22 h ?`;
@@ -73,7 +73,7 @@ ${h.table(['Foyer', 'Zen Flex', 'Tempo', 'Tempo avec effort'], F.map((f) => [`${
     title: 'EDF Zen Flex: Sobriety Days, 2026 Prices, Versus Tempo',
     description: 'EDF Zen Flex: 345 Eco days, 20 Sobriety days announced at 16:00, prices from the 15 September 2026 grid and a worked comparison with the Tempo option, no spin.',
     h1: 'EDF Zen Flex: Eco days, Sobriety days and Tempo',
-    intro: 'The offer’s rules, its prices read from EDF’s grid and how it compares with Tempo on your own consumption.',
+    intro: 'The rules of the Zen Flex offer, its prices read from EDF’s grid and how it compares with Tempo on your own consumption.',
     resume: (h) => {
       const Z = h.P.zen_flex, T = h.P.tempo.kwh;
       return `Zen Flex is the usual name for EDF’s « Zen Week-End, Flex option », a market offer rather than a regulated tariff. It splits the year into ${Z.jours_eco} Eco days and ${Z.jours_sobriete} Sobriety days. Every day, peak hours run from 08:00 to 13:00 and from 18:00 to 20:00; the other ${Z.heures_creuses_par_jour} hours are off-peak. On an Eco day a kWh costs ${h.kwh(Z.kwh.eco.hc)} off-peak and ${h.kwh(Z.kwh.eco.hp)} at peak. On a Sobriety day it rises to ${h.kwh(Z.kwh.sobriete.hc)} off-peak and ${h.kwh(Z.kwh.sobriete.hp)} at peak, slightly more than a Tempo red day (${h.kwh(T.R.hp)}). Sobriety days fall on weekdays, excluding bank holidays, from 1 January to 15 April and from 15 October to 31 December; EDF announces them at 16:00 the day before. The offer requires a Linky meter, its pre-tax prices can change twice a year and you can leave at no cost. Against Tempo, it comes down to one question: does your use fall mainly between 08:00-13:00 and 18:00-20:00, or between 06:00 and 22:00?`;

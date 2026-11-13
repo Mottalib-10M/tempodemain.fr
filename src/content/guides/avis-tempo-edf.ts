@@ -23,7 +23,7 @@ export default defineGuide({
     title: 'Tempo EDF : avis 2026, avantages, pièges et vrai coût',
     description: 'Tempo EDF, notre avis 2026 : 300 jours bleus moins chers que la Base, 22 jours rouges à 0,7295 € le kWh. Le bilan chiffré sur cinq foyers et sur le vôtre.',
     h1: 'Tempo EDF : notre avis, chiffres à l’appui',
-    intro: 'Pas de témoignage recopié : les prix de la grille, les règles de RTE et le calcul sur des foyers réels, du studio à la maison chauffée à l’électricité.',
+    intro: 'Pas de témoignage recopié sur Tempo : les prix de la grille, les règles de RTE et le calcul sur des foyers réels, du studio à la maison chauffée à l’électricité.',
     resume: (h) => {
       const T = h.P.tempo.kwh, Q = h.P.tempo_regles, P = profils(h);
       return `Notre avis sur Tempo tient en une phrase : c’est l’option la moins chère du tarif réglementé pour la plupart des foyers qui ne se chauffent pas à l’électricité, et un pari pour ceux qui le font. Sur ${Q.jours_bleus_annee_365} jours bleus par an, le kWh coûte ${h.kwh(T.B.hp)} en heures pleines et ${h.kwh(T.B.hc)} la nuit, moins que les ${h.kwh(h.P.base.kwh['6'])} de l’option Base. Sur ${Q.jours_blancs} jours blancs, il reste proche de la Base. Mais ${Q.jours_rouges} jours rouges, en semaine entre novembre et mars, facturent l’heure pleine ${h.kwh(T.R.hp)}, plus de quatre fois le prix d’un jour bleu. Un foyer de ${h.num(P[1].kwh)} kWh peu chauffé économise ${h.eur(P[1].base - P[1].t0)} par an face à la Base sans rien changer. Une maison de ${h.num(P[2].kwh)} kWh chauffée pour moitié à l’électricité paie ${h.eur(P[2].t0 - P[2].base)} de plus si elle ne fait aucun effort, et en gagne ${h.eur(P[2].base - P[2].t50)} si elle reporte la moitié de ses heures pleines rouges la nuit. Tout se joue donc sur le chauffage et sur la discipline des jours rouges.`;
@@ -67,7 +67,7 @@ ${h.table(['Foyer', 'Base', 'Heures creuses', 'Tempo sans effort', 'Tempo, 25 % 
     title: 'Tempo EDF Review 2026: Pros, Pitfalls and the Real Cost',
     description: 'Tempo EDF review for 2026: 300 blue days cheaper than Base, 22 red days at €0.7295 per kWh. The figures for five households, and a calculator for your own home.',
     h1: 'Tempo EDF: our review, with the numbers',
-    intro: 'No copied testimonials: the grid prices, RTE’s rules and the calculation on real households, from a studio to an electrically heated house.',
+    intro: 'No copied testimonials in this Tempo EDF review: the grid prices, RTE’s rules and the calculation on real households, from a studio to an electrically heated house.',
     resume: (h) => {
       const T = h.P.tempo.kwh, Q = h.P.tempo_regles, P = profils(h);
       return `Our view of Tempo fits in one sentence: it is the cheapest option of the regulated tariff for most households that do not heat with electricity, and a gamble for those that do. On ${Q.jours_bleus_annee_365} blue days a year a kWh costs ${h.kwh(T.B.hp)} at peak and ${h.kwh(T.B.hc)} at night, less than the ${h.kwh(h.P.base.kwh['6'])} of the Base option. On ${Q.jours_blancs} white days it stays close to Base. But ${Q.jours_rouges} red days, on weekdays between November and March, bill the peak hour at ${h.kwh(T.R.hp)}, more than four times the blue-day price. A ${h.num(P[1].kwh)} kWh household with little heating saves ${h.eur(P[1].base - P[1].t0)} a year against Base without changing a thing. A ${h.num(P[2].kwh)} kWh house heated half by electricity pays ${h.eur(P[2].t0 - P[2].base)} more if it makes no effort, and saves ${h.eur(P[2].base - P[2].t50)} if it moves half of its red peak use to the night. It all comes down to heating and to discipline on red days.`;
@@ -96,7 +96,7 @@ ${h.table(['Foyer', 'Base', 'Heures creuses', 'Tempo sans effort', 'Tempo, 25 % 
 <li><strong>Daily attention.</strong> You need to know tomorrow’s colour and move washing, charging or heating; a household that does not want to think about it loses part of the benefit.</li>
 <li><strong>No 3 kVA.</strong> Tempo starts at ${h.P.tempo.kva_min} kVA, which rules out the smallest homes.</li>
 </ul>
-<h2>The verdict on five households</h2>
+<h2>Tempo EDF review: the verdict on five households</h2>
 ${h.table(['Household', 'Base', 'Off-peak', 'Tempo, no effort', 'Tempo, 25% shifted', 'Tempo, 50% shifted'], P.map(lig), 'Annual bill incl. tax and standing charge, 1 August 2026 grid. 35% of use at night; « shifted »: share of red peak use moved to off-peak hours. Heating split by colour from éCO2mix.', ['l', 'r', 'r', 'r', 'r', 'r'])}
 <p>The picture is clear. With no electric heating, or very little, Tempo wins from the first year with no effort at all. With half of consumption going on heating, it loses to Off-peak as long as nothing is done on red days, and becomes the cheapest again once half of red peak use is shifted. The share of heating falling on those days comes from RTE’s ${h.src('eco2mix', 'éCO2mix')} national consumption over twelve winters; a home better insulated than average does better than the table. Your exact threshold is worked out on ${h.a('tempo-rentable', 'is Tempo worth it?')}, and the mini calculator above gives the yearly result with your own effort.</p>
 <h2>Who it suits, and who it does not</h2>

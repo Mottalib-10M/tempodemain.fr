@@ -23,7 +23,7 @@ export default defineGuide({
     title: 'Chauffage électrique et Tempo 2026 : le poids des rouges',
     description: 'Chauffage électrique et Tempo en 2026 : part du chauffage tombant un jour rouge selon RTE, coût d’un hiver de radiateurs ou de pompe à chaleur, baisse utile.',
     h1: 'Chauffage électrique et Tempo : ce que pèsent les jours rouges',
-    intro: 'Les jours rouges tombent par grand froid, quand le chauffage tourne le plus : voici, mesurée par RTE, la part de votre chauffage qu’ils concentrent.',
+    intro: 'Les jours rouges Tempo tombent par grand froid, quand le chauffage tourne le plus : voici, mesurée par RTE, la part de votre chauffage qu’ils concentrent.',
     resume: (h) => {
       const P = h.M.PROFIL_CHAUFFAGE, Q = h.P.tempo_regles, t = h.P.tempo.kwh;
       return `Les jours rouges Tempo ne tombent pas au hasard : RTE les place quand la consommation nette nationale est la plus forte, c’est-à-dire par grand froid, quand les radiateurs et les pompes à chaleur tournent le plus. Pour mesurer cet effet, nous avons croisé la consommation nationale jour par jour publiée par RTE avec la couleur de chaque jour depuis 2014. En moyenne sur ${h.num(h.M.PROFIL_SAISONS)} saisons, les ${h.num(Q.jours_rouges)} jours rouges ont concentré ${h.pct(P.R)} de la consommation de chauffage, les ${h.num(Q.jours_blancs)} jours blancs ${h.pct(P.W)} et les jours bleus ${h.pct(P.B)}. Un logement chauffé à l’électricité consomme donc environ un cinquième de son chauffage annuel pendant les jours où le kilowattheure coûte ${h.kwh(t.R.hp)} entre 6 h et 22 h. C’est le premier chiffre à connaître avant de choisir Tempo, et le levier le plus puissant pour réduire la facture : chaque degré baissé ces jours-là pèse lourd. Le mini-simulateur chiffre ce coût sur votre consommation de chauffage.`;
@@ -46,7 +46,7 @@ export default defineGuide({
 ${h.table(['Saison', 'Jours rouges', 'Chauffage les jours rouges', 'Les jours blancs', 'Les jours bleus'], parSaison(h), 'Part de la consommation thermosensible nationale tombée chaque couleur, calculée depuis éCO2mix et le calendrier Tempo de RTE.', ['l', 'r', 'r', 'r', 'r'])}
 <p>La part des rouges va de ${h.pct(E.min.r)} (${E.min.k}) à ${h.pct(E.max.r)} (${E.max.k}). Les écarts suivent la météo : un hiver aux froids concentrés sur quelques semaines charge davantage ses jours rouges, un hiver doux étale le chauffage sur des jours bleus. La saison 2019-2020, raccourcie à ${h.num(h.P.tempo_regles.saison_2019_2020.rouges)} rouges par décision de la CRE, se distingue logiquement par une part plus faible.</p>
 
-<h2>Ce que coûte le chauffage des jours rouges</h2>
+<h2>Ce que coûte le chauffage électrique des jours rouges</h2>
 <p>Appliquée à quelques consommations de chauffage annuelles, avec 30 % de la chaleur produite la nuit, la moyenne donne :</p>
 ${h.table(['Chauffage par an', 'Dont jours rouges', 'Coût Tempo des rouges', 'Avec 20 % de baisse', 'Mêmes kWh en Heures creuses'], scenarios(h), 'Prix TTC au 1er août 2026, hors abonnement.', ['l', 'r', 'r', 'r', 'r'])}
 <p>L’écart entre la colonne Tempo et la colonne Heures creuses est le prix des jours rouges. Il doit être compensé par les jours bleus et blancs, moins chers en Tempo, pour que l’option reste rentable. Le guide ${h.a('tempo-rentable', 'Tempo est-il rentable')} calcule le point d’équilibre, et le ${h.a('comparateur', 'comparateur')} l’applique à votre consommation entière.</p>
@@ -82,7 +82,7 @@ ${h.table(['Couleur', 'Part du chauffage', 'kWh', 'Coût en Tempo', 'Mêmes kWh 
     title: 'Electric Heating and Tempo 2026: the Weight of Red Days',
     description: 'Electric heating on Tempo in 2026: the share of heating falling on red days according to RTE, the cost of a winter on radiators or a heat pump, set-backs.',
     h1: 'Electric heating and Tempo: how much red days weigh',
-    intro: 'Red days fall in hard frost, when heating runs hardest: here is the share of your heating they concentrate, as measured by RTE.',
+    intro: 'Tempo red days fall in hard frost, when heating runs hardest: here is the share of your heating they concentrate, as measured by RTE.',
     resume: (h) => {
       const P = h.M.PROFIL_CHAUFFAGE, Q = h.P.tempo_regles, t = h.P.tempo.kwh;
       return `Tempo red days do not fall at random: RTE places them when national net demand peaks, which means in hard frost, when radiators and heat pumps run hardest. To measure this effect we combined day-by-day national demand published by RTE with the colour of every day since 2014. Averaged over ${h.num(h.M.PROFIL_SAISONS)} seasons, the ${h.num(Q.jours_rouges)} red days concentrated ${h.pct(P.R)} of heating consumption, the ${h.num(Q.jours_blancs)} white days ${h.pct(P.W)} and blue days ${h.pct(P.B)}. An electrically heated home therefore uses about a fifth of its annual heating on the days when a kilowatt-hour costs ${h.kwh(t.R.hp)} between 06:00 and 22:00. That is the first figure to know before choosing Tempo, and the most powerful lever to cut the bill: every degree turned down on those days counts. The mini-calculator puts a cost on it from your own heating consumption.`;
@@ -105,7 +105,7 @@ ${h.table(['Couleur', 'Part du chauffage', 'kWh', 'Coût en Tempo', 'Mêmes kWh 
 ${h.table(['Season', 'Red days', 'Heating on red days', 'On white days', 'On blue days'], parSaison(h), 'Share of national temperature-sensitive demand falling on each colour, worked out from éCO2mix and RTE’s Tempo calendar.', ['l', 'r', 'r', 'r', 'r'])}
 <p>The red-day share ranges from ${h.pct(E.min.r)} (${E.min.k}) to ${h.pct(E.max.r)} (${E.max.k}). The differences follow the weather: a winter whose cold is packed into a few weeks loads its red days more heavily, a mild winter spreads heating over blue days. The 2019-2020 season, cut to ${h.num(h.P.tempo_regles.saison_2019_2020.rouges)} red days by the regulator, naturally shows a lower share.</p>
 
-<h2>What red-day heating costs</h2>
+<h2>What electric heating costs on red days</h2>
 <p>Applied to a few annual heating consumptions, with 30% of the heat produced at night, the average gives:</p>
 ${h.table(['Heating a year', 'Of which red days', 'Tempo cost of red days', 'With a 20% cut', 'Same kWh on Off-peak'], scenarios(h), 'Prices including tax from 1 August 2026, standing charge excluded.', ['l', 'r', 'r', 'r', 'r'])}
 <p>The gap between the Tempo column and the Off-peak column is the price of red days. It has to be made up by blue and white days, cheaper on Tempo, for the option to pay. The guide ${h.a('tempo-rentable', 'is Tempo worth it')} works out the break-even point, and the ${h.a('comparateur', 'comparison tool')} applies it to your whole consumption.</p>

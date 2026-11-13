@@ -39,7 +39,7 @@ export default defineGuide({
 <p>Consommation en kWh = puissance en kW × durée en heures. Pour passer des watts aux kilowatts, divisez par 1 000 : 1 500 W font 1,5 kW. Pour une durée en minutes, divisez par 60 : 30 minutes font 0,5 heure. Un appareil de 1,5 kW utilisé 30 minutes consomme donc 0,75 kWh.</p>
 <p>Le premier piège tient aux appareils à thermostat. Un four, un radiateur, un ballon d’eau chaude, un lave-linge chauffent à pleine puissance puis s’arrêtent, et recommencent : leur plaque indique un maximum, pas une moyenne. Le calcul donne alors un plafond, pas la consommation réelle. Le deuxième piège est la durée : on surestime volontiers le temps d’un sèche-linge et l’on oublie celui d’un appareil qui ne s’éteint jamais. Le troisième est la veille, ces quelques watts consommés en permanence par les appareils « éteints ».</p>
 
-<h2>Quelques exemples de calcul</h2>
+<h2>Quelques exemples de consommation électrique</h2>
 <p>Le tableau applique la formule à des puissances et durées choisies pour l’exemple, au prix de la ${h.src('grilleEdf', 'grille du Tarif Bleu au 1er août 2026')}. Remplacez-les par celles de vos appareils dans le mini-simulateur.</p>
 ${h.table(['Exemple', 'Par an', 'En Base (6 kVA)', 'En heures creuses (option HC)', 'Prix rouge heures pleines, par kWh'], ex(h, true), 'Coût annuel TTC, hors abonnement.', ['l', 'r', 'r', 'r', 'r'])}
 <p>La dernière colonne rappelle ce que coûte chaque kWh un jour rouge Tempo entre 6 h et 22 h : un appareil utilisé ces heures-là ces jours-là coûte plus de trois fois et demie son prix en Base. C’est pour cela que la question « quand » compte autant que « combien » dès que l’on choisit Tempo.</p>
@@ -74,7 +74,7 @@ ${h.table(['Veille permanente', 'Par an', 'En Base (6 kVA)'], veille(h), 'Consom
     title: 'Appliance Electricity Use 2026: How to Work It Out',
     description: 'Appliance electricity use in 2026: the kWh = kW × hours formula, the rating plate, the cost of standby and the cost on Base, Off-peak or Tempo in France.',
     h1: 'Appliance electricity use: the calculation step by step',
-    intro: 'One multiplication gives an appliance’s consumption: its power times its running time. Here is how to apply it, and what it costs on your option.',
+    intro: 'One multiplication gives an appliance’s electricity use: its power times its running time. Here is how to apply it, and what it costs on your option.',
     resume: (h) => `An electrical appliance’s consumption is worked out by multiplying its power in kilowatts by its running time in hours: the result is in kilowatt-hours, the unit on your bill. A 2,000 W appliance, that is 2 kW, running for one hour uses 2 kWh; the same appliance one hour a day for a year uses ${h.num(2 * 365)} kWh. You then multiply by the kWh price of your option: ${h.kwh(h.P.base.kwh['6'])} on Base at 6 kVA, ${h.kwh(h.P.hc.hp)} or ${h.kwh(h.P.hc.hc)} on Off-peak depending on the hour, from ${h.kwh(h.P.tempo.kwh.B.hc)} to ${h.kwh(h.P.tempo.kwh.R.hp)} on Tempo depending on the colour, under the regulated tariff of 1 August 2026. The power is printed on the appliance’s rating plate; for a thermostat appliance such as an oven or radiator it is a maximum, reached only part of the time. The mini-calculator does the sum for you and gives the annual cost on each option.`,
     faqs: (h) => [
       { q: 'Where do I find an appliance’s power?', a: 'On its rating plate, often stuck on the back or underneath, or in its manual: it is given in watts (W) or kilowatts (kW). For a recent appliance the energy label sometimes gives an annual consumption in kWh directly, measured with a standard method. A plug-in power meter measures real consumption, which helps with thermostat appliances.' },
@@ -88,7 +88,7 @@ ${h.table(['Veille permanente', 'Par an', 'En Base (6 kVA)'], veille(h), 'Consom
 <p>Consumption in kWh = power in kW × time in hours. To go from watts to kilowatts, divide by 1,000: 1,500 W is 1.5 kW. For a time in minutes, divide by 60: 30 minutes is 0.5 hours. A 1.5 kW appliance used for 30 minutes therefore uses 0.75 kWh.</p>
 <p>The first trap is thermostat appliances. An oven, a radiator, a water heater or a washing machine heats at full power, stops, then starts again: the plate shows a maximum, not an average. The calculation then gives a ceiling, not real consumption. The second trap is time: people readily overestimate a dryer’s running time and forget an appliance that never switches off. The third is standby, the few watts drawn around the clock by appliances that are “off”.</p>
 
-<h2>A few worked examples</h2>
+<h2>A few worked examples of appliance electricity use</h2>
 <p>The table applies the formula to powers and times chosen as examples, at the prices of the ${h.src('grilleEdf', 'Tarif Bleu grid of 1 August 2026')}. Swap in your own appliances in the mini-calculator.</p>
 ${h.table(['Example', 'Per year', 'On Base (6 kVA)', 'Off-peak hours (HC option)', 'Red peak price per kWh'], ex(h, false), 'Annual cost including tax, standing charge excluded.', ['l', 'r', 'r', 'r', 'r'])}
 <p>The last column is a reminder of what each kWh costs on a Tempo red day between 06:00 and 22:00: an appliance used at those hours on those days costs more than three and a half times its Base price. That is why “when” matters as much as “how much” once you choose Tempo.</p>

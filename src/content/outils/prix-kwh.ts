@@ -21,7 +21,7 @@ export default defineGuide({
     title: 'Prix du kWh EDF 2026 : grille du Tarif Bleu au 1er août',
     description: 'Prix du kWh EDF au Tarif Bleu 2026 : grille Base et Heures creuses du 1er août, prix moyen abonnement compris selon votre consommation, taxes, prochaine hausse.',
     h1: 'Prix du kWh au Tarif Bleu en 2026',
-    intro: 'Le prix affiché sur la grille n’est pas celui que vous payez vraiment : l’abonnement s’y ajoute. L’outil calcule votre prix moyen tout compris.',
+    intro: 'Le prix du kWh affiché sur la grille n’est pas celui que vous payez vraiment : l’abonnement s’y ajoute. L’outil calcule votre prix moyen tout compris.',
     resume: (h) => `Depuis le 1er août 2026, le tarif réglementé de vente d’électricité, le Tarif Bleu d’EDF, facture le kilowattheure ${h.kwh(h.P.base.kwh['6'])} en option Base pour 3 et 6 kVA, et ${h.kwh(h.P.base.kwh['9'])} au-delà. En option Heures creuses, il coûte ${h.kwh(h.P.hc.hp)} en heures pleines et ${h.kwh(h.P.hc.hc)} en heures creuses, quelle que soit la puissance. Ces prix sont toutes taxes comprises : ils incluent l’acheminement sur les réseaux, l’accise sur l’électricité de ${h.kwh(h.P.taxes.accise_kwh_htva)} par kWh hors TVA, la contribution tarifaire d’acheminement et la TVA à ${h.pct(h.P.taxes.tva, 0)}. La Commission de régulation de l’énergie avait proposé en juillet une hausse moyenne de 3,12 % hors taxes des tarifs bleus résidentiels. Le prix réellement payé dépend aussi de l’abonnement : plus vous consommez, plus il se dilue, et un petit consommateur paie son kWh bien plus cher que le chiffre de la grille. Le prochain mouvement est attendu au 1er février 2027 ; il n’est pas encore publié.`,
     faqs: (h) => [
       { q: 'Pourquoi mon prix moyen du kWh est-il plus élevé que celui de la grille ?', a: 'Parce que l’abonnement se paie quel que soit votre usage. Divisé par une petite consommation, il pèse lourd : un studio qui consomme 2 000 kWh par an paie son kWh nettement plus que le prix affiché, une maison chauffée à 14 000 kWh presque le prix affiché. L’outil fait la division pour votre consommation et votre puissance, option par option.' },
@@ -36,7 +36,7 @@ export default defineGuide({
 <h2>La grille Base et Heures creuses au 1er août 2026</h2>
 ${h.table(['Puissance', 'Base : abonnement / mois', 'Base : kWh', 'HC : abonnement / mois', 'HC : heures pleines', 'HC : heures creuses'], grille(h), 'Prix TTC de la grille EDF « Tarif Bleu » applicable au 1er août 2026.', ['l', 'r', 'r', 'r', 'r', 'r'])}
 <p>La ${h.src('grilleEdf', 'grille officielle')} reprend les barèmes proposés par la ${h.src('creTrve2026', 'délibération de la CRE du 15 juillet 2026')}. Deux nouveautés y figurent : l’option Heures creuses est ouverte aux compteurs de 3 kVA, et les puissances de 9 à 36 kVA de l’option Base sont en extinction, c’est-à-dire facturées aux contrats existants mais fermées à la souscription. Les prix Tempo, qui varient avec la couleur du jour, ont leur page : ${h.a('tarif-tempo', 'tarif Tempo')}.</p>
-<h2>Votre prix moyen, abonnement compris</h2>
+<h2>Votre prix moyen du kWh, abonnement compris</h2>
 ${h.table(['Consommation', 'Puissance', 'Base', 'Heures creuses', 'Tempo', 'La moins chère'], Mo.map((m) => [
   `${h.num(m.kwh)} kWh`, `${m.kva} kVA`,
   ...m.c.lignes.map((l) => (l.dispo ? h.kwh(l.prixMoyen) : 'non proposée')),

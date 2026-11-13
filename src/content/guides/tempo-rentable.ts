@@ -28,7 +28,7 @@ export default defineGuide({
     title: 'Tempo rentable ou non en 2026 : le seuil de votre foyer',
     description: 'Tempo rentable en 2026 ? Le seuil de chauffage au-delà duquel l’option coûte plus que les Heures creuses, selon votre consommation, vos nuits et vos efforts.',
     h1: 'Tempo est-il rentable pour vous ? Le calcul du seuil',
-    intro: 'Tempo n’est ni toujours gagnant ni toujours perdant : il existe un seuil, propre à chaque foyer, au-delà duquel il coûte plus cher.',
+    intro: 'Tempo n’est ni toujours rentable ni toujours perdant : il existe un seuil, propre à chaque foyer, au-delà duquel il coûte plus cher.',
     resume: (h) => {
       const s0 = seuil(h, 8000, 9, 0.35, 0), s5 = seuil(h, 8000, 9, 0.35, 0.5);
       return `Tempo est rentable tant que ce que vous gagnez sur ses ${h.num(h.P.tempo_regles.jours_bleus_annee_365 + h.P.tempo_regles.jours_blancs)} jours bleus et blancs dépasse ce que vous perdez sur ses ${h.num(h.P.tempo_regles.jours_rouges)} jours rouges. Le gain vient de prix plus bas que la Base et les Heures creuses presque toute l’année ; la perte vient des heures pleines rouges, facturées ${h.kwh(h.P.tempo.kwh.R.hp)} au tarif réglementé du 1er août 2026. Trois leviers déplacent l’équilibre : la part de votre consommation qui sert au chauffage, puisque le chauffage se concentre sur les jours rouges ; la part que vous consommez la nuit ; et l’effort consenti les jours rouges. Pour une maison de ${h.num(8000)} kWh en 9 kVA avec 35 % de consommation nocturne, notre moteur trouve que Tempo, sans aucun effort, reste devant tant que le chauffage ne dépasse pas ${fmt(h, s0, true)} de la consommation ; en reportant la moitié des heures pleines rouges, le seuil monte à ${fmt(h, s5, true)}. Le mini-simulateur fait ce calcul pour votre propre foyer.`;
@@ -43,7 +43,7 @@ export default defineGuide({
     body: (h) => {
       const t = h.P.tempo.kwh, ab = (o: 'base' | 'hc' | 'tempo') => h.M.aboAnnuel(o, 9);
       return `
-<h2>Le principe de l’équilibre</h2>
+<h2>Tempo rentable ou non : le principe de l’équilibre</h2>
 <p>Tempo ne coûte pas plus cher « en moyenne » : il coûte moins cher la plupart du temps et beaucoup plus cher quelques jours. Un kWh d’heures pleines bleues vaut ${h.kwh(t.B.hp)}, contre ${h.kwh(h.P.hc.hp)} en heures pleines de l’option Heures creuses et ${h.kwh(h.P.base.kwh['9'])} en Base au-delà de 6 kVA. Un kWh d’heures pleines rouges vaut ${h.kwh(t.R.hp)}. L’abonnement est à peu près le même : ${h.eur(ab('tempo'))} par an en Tempo et ${h.eur(ab('hc'))} en Heures creuses à 9 kVA, selon la ${h.src('grilleEdf', 'grille du 1er août 2026')}. La question se résume donc à une balance entre beaucoup de petits gains et quelques grosses pertes.</p>
 <p>Ce qui fait pencher la balance, c’est la part de votre consommation qui tombe en heures pleines un jour rouge. Elle dépend surtout du chauffage, puisque les jours rouges sont les plus froids. Nos calculs l’estiment à partir de la consommation nationale mesurée par RTE dans ${h.src('eco2mix', 'éCO2mix')} : le chauffage d’un foyer suit à peu près la courbe de froid du pays.</p>
 
@@ -89,7 +89,7 @@ ${h.table(['Réglage', 'Tempo', 'Heures creuses', 'Écart'], ([
     title: 'Tempo Worth It or Not in 2026: Your Household’s Threshold',
     description: 'Is Tempo worth it in 2026? The heating share beyond which the option costs more than Off-peak, depending on your consumption, night-time use and red-day effort.',
     h1: 'Is Tempo worth it for you? Working out the threshold',
-    intro: 'Tempo neither always wins nor always loses: every household has a threshold beyond which it costs more.',
+    intro: 'Tempo is not always worth it, and not always a loss: every household has a threshold beyond which it costs more.',
     resume: (h) => {
       const s0 = seuil(h, 8000, 9, 0.35, 0), s5 = seuil(h, 8000, 9, 0.35, 0.5);
       return `Tempo pays off as long as what you save on its ${h.num(h.P.tempo_regles.jours_bleus_annee_365 + h.P.tempo_regles.jours_blancs)} blue and white days exceeds what you lose on its ${h.num(h.P.tempo_regles.jours_rouges)} red days. The saving comes from prices below Base and Off-peak for most of the year; the loss comes from red peak hours, billed at ${h.kwh(h.P.tempo.kwh.R.hp)} on the regulated tariff of 1 August 2026. Three levers shift the balance: the share of your consumption that goes on heating, since heating concentrates on red days; the share you use at night; and the effort you make on red days. For an 8,000 kWh house on 9 kVA with 35% of use at night, our engine finds that Tempo with no effort at all stays ahead as long as heating does not exceed ${fmt(h, s0, false)} of consumption; shifting half of red-day peak use lifts the threshold to ${fmt(h, s5, false)}. The mini-calculator runs the same calculation for your own household.`;
@@ -104,7 +104,7 @@ ${h.table(['Réglage', 'Tempo', 'Heures creuses', 'Écart'], ([
     body: (h) => {
       const t = h.P.tempo.kwh, ab = (o: 'base' | 'hc' | 'tempo') => h.M.aboAnnuel(o, 9);
       return `
-<h2>The principle of the balance</h2>
+<h2>Is Tempo worth it or not: the principle of the balance</h2>
 <p>Tempo is not dearer “on average”: it is cheaper most of the time and much dearer on a few days. A blue peak kWh costs ${h.kwh(t.B.hp)}, against ${h.kwh(h.P.hc.hp)} at peak on the Off-peak option and ${h.kwh(h.P.base.kwh['9'])} on Base above 6 kVA. A red peak kWh costs ${h.kwh(t.R.hp)}. The standing charge is about the same: ${h.eur(ab('tempo'))} a year on Tempo and ${h.eur(ab('hc'))} on Off-peak at 9 kVA, according to the ${h.src('grilleEdf', 'grid of 1 August 2026')}. The question therefore boils down to a balance between many small savings and a few large losses.</p>
 <p>What tips the balance is the share of your consumption that falls at peak time on a red day. It depends above all on heating, since red days are the coldest. Our calculations estimate it from national demand measured by RTE in ${h.src('eco2mix', 'éCO2mix')}: a household’s heating roughly follows the country’s cold-weather curve.</p>
 

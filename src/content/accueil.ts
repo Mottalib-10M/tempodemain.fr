@@ -30,7 +30,7 @@ export const HOME: Record<'fr' | 'en', Home> = {
     title: 'Couleur Tempo EDF aujourd’hui et demain, saison 2026-2027',
     description: 'Couleur Tempo du jour et de demain publiée par RTE, jours rouges et blancs restants en 2026-2027, et comparateur Base, Heures creuses ou Tempo sans téléphone.',
     h1: 'Couleur Tempo aujourd’hui et demain',
-    intro: 'La couleur publiée par RTE, les jours restants et l’option la moins chère pour vous, sans numéro de téléphone à laisser.',
+    intro: 'La couleur Tempo d’EDF aujourd’hui et demain, publiée par RTE, les jours restants de la saison et l’option la moins chère pour vous, sans numéro de téléphone à laisser.',
     calcTitle: 'Base, Heures creuses ou Tempo : quelle option vous coûte le moins ?',
     resume: (h) => {
       const { y, r } = saison(h); const R = h.P.tempo_regles;
@@ -57,7 +57,7 @@ export const HOME: Record<'fr' | 'en', Home> = {
       const tot = tri[0].premierRouge!, tard = tri[tri.length - 1].premierRouge!;
       const jour = (c: 'B' | 'W' | 'R') => h.M.coutJour(c, 40, 0.3);
       return `
-<h2>Comment se lit la couleur Tempo</h2>
+<h2>Comment lire la couleur Tempo d’aujourd’hui et de demain</h2>
 <p>La couleur d’un jour vaut pour une journée Tempo, de 6 h à 6 h le lendemain. Elle fixe deux prix : celui des heures pleines, de 6 h à 22 h, et celui des heures creuses, de 22 h à 6 h. Ces horaires sont les mêmes dans toute la France métropolitaine, parce qu’ils sont écrits dans le tarif, et non choisis par le gestionnaire de réseau local comme le sont les heures creuses de l’option classique.</p>
 <p>RTE choisit la couleur la veille, en regardant la consommation nette prévue pour le lendemain, c’est-à-dire la consommation nationale moins la production éolienne et solaire. Depuis le 1er novembre 2026, la ${h.src('cre2026189', 'délibération de la CRE n° 2026-189')} lui fait tirer les jours rouges avec la méthode des jours de pointe du mécanisme de capacité : des seuils publiés par RTE pour chaque jour de l’hiver, dans un couloir mensuel qui borne le nombre de rouges cumulés à la fin de chaque mois, pour ne plus les entasser en fin d’hiver comme en mars 2026. Les jours blancs restent choisis par l’algorithme de la ${h.src('rteMethode', 'fiche de méthode')}, à seuils qui baissent au fil de la saison et selon le stock restant. Un froid vif en semaine et peu de vent : le jour devient rouge. Un temps doux : bleu. La couleur est publiée à ${R.publication.replace(':', ' h ')} sur le ${h.src('rteCalendrier', 'calendrier Tempo de RTE')}, qui précise qu’une indication non contractuelle peut paraître ${R.presignal}. À partir du ${h.date(R.rouge_annonce_j2_depuis)}, un jour rouge pourra être annoncé dès l’avant-veille, quand RTE le tire si tôt.</p>
 <p>Vous la retrouvez aussi sur l’écran du compteur Linky, sur l’application ou dans les courriels de votre fournisseur. Cette page la relève directement chez RTE et se reconstruit plusieurs fois par jour : en haut de l’écran, la carte de gauche est la journée en cours, celle de droite le lendemain. Avant 10 h 30, la carte de demain indique simplement que la couleur n’est pas encore publiée.</p>
@@ -126,7 +126,7 @@ ${h.table(['Foyer', 'Base', 'Heures creuses', 'Tempo', 'Tempo, moitié reportée
     title: 'Tempo Colour Today and Tomorrow: 2026-2027 Season, RTE',
     description: 'Today’s and tomorrow’s Tempo colour as published by RTE, red and white days left in 2026-2027, and a Base, Off-peak or Tempo comparison with no phone number.',
     h1: 'Tempo colour today and tomorrow',
-    intro: 'The colour published by RTE, the days left and the cheapest option for you, with no phone number to leave.',
+    intro: 'The Tempo colour for today and tomorrow as published by RTE, the days left and the cheapest option for you, with no phone number to leave.',
     calcTitle: 'Base, Off-peak or Tempo: which option costs you least?',
     resume: (h) => {
       const { y, r } = saison(h); const R = h.P.tempo_regles;
@@ -148,7 +148,7 @@ ${h.table(['Foyer', 'Base', 'Heures creuses', 'Tempo', 'Tempo, moitié reportée
       const R = h.P.tempo_regles, T = h.P.tempo.kwh, { y, r, last } = saison(h), F = foyers(h), prof = h.M.PROFIL_CHAUFFAGE;
       const jour = (c: 'B' | 'W' | 'R') => h.M.coutJour(c, 40, 0.3);
       return `
-<h2>How to read the Tempo colour</h2>
+<h2>How to read the Tempo colour for today and tomorrow</h2>
 <p>A colour applies to one Tempo day, from 06:00 to 06:00 the following morning. It sets two prices: peak hours from 06:00 to 22:00 and off-peak hours from 22:00 to 06:00. Those hours are the same everywhere in mainland France, because they are written into the tariff itself rather than set meter by meter by the local network operator, as the off-peak hours of the standard HP/HC option are.</p>
 <p>RTE picks the colour the day before, looking at the next day’s forecast net demand, meaning national consumption minus wind and solar output. Since 1 November 2026, ${h.src('cre2026189', 'CRE deliberation no. 2026-189')} has it draw red days with the peak-day method of the capacity mechanism: thresholds RTE publishes for every day of the winter, within a monthly corridor that caps the number of red days used by the end of each month, so they no longer pile up at the end of winter as in March 2026. White days are still chosen by the algorithm in the ${h.src('rteMethode', 'method note')}, with thresholds that fall as the season goes on and as the stock left shrinks. A cold, still weekday turns red; a mild one stays blue. The colour is published at 10:30 on ${h.src('rteCalendrier', 'RTE’s Tempo calendar')}, which adds that a non-binding indication may appear between 08:00 and 10:30. From ${h.date(R.rouge_annonce_j2_depuis)}, a red day may be announced two days ahead when RTE draws it that early.</p>
 <p>You will also see it on the Linky meter display, in your supplier’s app or in its emails. This page reads it straight from RTE and rebuilds several times a day: at the top of the screen, the left card is the current day and the right card is tomorrow. Before 10:30, tomorrow’s card simply says the colour is not out yet.</p>

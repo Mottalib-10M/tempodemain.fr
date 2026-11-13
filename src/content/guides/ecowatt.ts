@@ -15,7 +15,7 @@ export default defineGuide({
     title: 'Ecowatt : signal vert, orange ou rouge de RTE, hiver 2026',
     description: 'Ecowatt, la météo de l’électricité de RTE : signal vert, orange ou rouge, heures décarbonées, lien avec les jours rouges Tempo et EJP, où le consulter en 2026.',
     h1: 'Ecowatt : le signal de RTE, vert, orange ou rouge',
-    intro: 'Ce que dit chaque couleur, ce qu’elle ne dit pas, et comment elle se combine avec un jour rouge Tempo ou un jour EJP.',
+    intro: 'Ce que dit chaque couleur d’Ecowatt, ce qu’elle ne dit pas, et comment elle se combine avec un jour rouge Tempo ou un jour EJP.',
     resume: (h) => {
       const R = h.P.tempo.kwh.R;
       return `Ecowatt est la « météo de l’électricité » de RTE, le gestionnaire du réseau de transport, montée avec l’ADEME. Son signal prend trois couleurs. Vert : pas d’alerte, la production disponible couvre la consommation, et certaines heures sont signalées comme « vertueuses » parce que le nucléaire et les renouvelables suffisent à tout fournir sans émettre de CO₂. Orange : le système est tendu, les éco-gestes sont bienvenus. Rouge : le système est très tendu et des coupures sont inévitables si la consommation ne baisse pas ; RTE précise qu’elles seraient locales, organisées et d’environ deux heures au plus. Le signal se consulte sur monecowatt.fr, dans l’application EcoWatt, par alerte ou par l’API de RTE. Ecowatt ne change aucun prix : ce sont les jours rouges Tempo, fixés par RTE selon une autre règle, et les jours EJP, fixés par EDF, qui font payer le kWh jusqu’à ${h.kwh(R.hp)}. Les trois peuvent tomber le même jour, mais aucun n’entraîne les autres.`;
@@ -67,7 +67,7 @@ ${h.table(['', 'Ecowatt', 'Jour rouge Tempo', 'Jour EJP'], [
     title: 'Ecowatt: RTE’s Green, Orange and Red Grid Signal, 2026',
     description: 'Ecowatt, RTE’s electricity weather forecast: the green, orange or red signal, low-carbon hours, its link with Tempo red and EJP days, and where to check it.',
     h1: 'Ecowatt: RTE’s green, orange or red signal',
-    intro: 'What each colour says, what it does not say, and how it combines with a Tempo red day or an EJP day.',
+    intro: 'What each Ecowatt colour says, what it does not say, and how it combines with a Tempo red day or an EJP day.',
     resume: (h) => {
       const R = h.P.tempo.kwh.R;
       return `Ecowatt is the « electricity weather forecast » of RTE, the French transmission grid operator, run with the environment agency ADEME. Its signal has three colours. Green: no alert, available generation covers demand, and some hours are flagged as « virtuous » because nuclear and renewables can supply everything without emitting CO₂. Orange: the system is under strain and energy-saving actions are welcome. Red: the system is under severe strain and power cuts are unavoidable unless demand falls; RTE says they would be local, organised and last about two hours at most. The signal can be checked on monecowatt.fr, in the EcoWatt app, through alerts or through RTE’s API. Ecowatt changes no price: Tempo red days, set by RTE under a different rule, and EJP days, set by EDF, are what push a kWh up to ${h.kwh(R.hp)}. All three can fall on the same day, but none triggers the others.`;

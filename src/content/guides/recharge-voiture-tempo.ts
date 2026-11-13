@@ -40,7 +40,7 @@ export default defineGuide({
     body: (h) => {
       const t = h.P.tempo.kwh;
       return `
-<h2>Pourquoi la voiture et Tempo vont bien ensemble</h2>
+<h2>Pourquoi la voiture électrique et Tempo vont bien ensemble</h2>
 <p>Tempo récompense ce qui se consomme la nuit et punit ce qui se consomme en journée les jours rouges. Une voiture garée le soir et repartie le matin coche la première case sans effort. Les huit heures creuses Tempo, de 22 h à 6 h, sont fixées par le tarif depuis la ${h.src('creTempo2014', 'délibération de la CRE de 2014')} : elles sont les mêmes partout en France et ne dépendent pas d’Enedis. Programmer la voiture une fois suffit pour toute l’année.</p>
 <p>La nuit, la couleur pèse peu : le kWh vaut ${h.kwh(t.B.hc)} un jour bleu et ${h.kwh(t.R.hc)} un jour rouge, un écart de quelques centimes. Même la nuit d’un jour rouge reste moins chère qu’une heure pleine de l’option Heures creuses, à ${h.kwh(h.P.hc.hp)}.</p>
 

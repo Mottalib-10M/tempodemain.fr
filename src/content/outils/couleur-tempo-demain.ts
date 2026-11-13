@@ -19,7 +19,7 @@ export default defineGuide({
     title: 'Couleur Tempo demain : publication RTE à 10 h 30, 2026-2027',
     description: 'Couleur Tempo de demain publiée par RTE la veille à 10 h 30 : ce que la journée vous coûtera, les quatorze derniers jours et comment s’y préparer en 2026-2027.',
     h1: 'Couleur Tempo de demain',
-    intro: 'La couleur du lendemain telle que RTE la publie, et ce que la journée vous coûtera selon votre consommation.',
+    intro: 'La couleur Tempo du lendemain telle que RTE la publie, et ce que la journée vous coûtera selon votre consommation.',
     resume: (h) => {
       const T = h.P.tempo.kwh, R = h.P.tempo_regles;
       return `La couleur Tempo de demain est fixée par RTE et publiée chaque jour à ${R.publication.replace(':', ' h ')} sur son calendrier Tempo ; c’est cette publication, et elle seule, qui engage les fournisseurs. Entre 8 h et 10 h 30, RTE peut diffuser une indication sans valeur contractuelle quand ses prévisions le permettent. La couleur annoncée vaut pour la journée Tempo du lendemain, de 6 h à 6 h le surlendemain, avec des heures creuses de 22 h à 6 h. Un jour rouge ne peut tomber qu’en semaine, entre le 1er novembre et le 31 mars. Au tarif du 1er août 2026, le kWh d’heures pleines passe de ${h.kwh(T.B.hp)} un jour bleu à ${h.kwh(T.R.hp)} un jour rouge : savoir la veille ce qui vous attend laisse une soirée pour lancer les machines, programmer le ballon et préparer le chauffage. L’outil ci-dessus affiche la couleur dès que notre relevé chez RTE l’a reçue et chiffre la journée sur votre propre consommation.`;
@@ -33,7 +33,7 @@ export default defineGuide({
     body: (h) => {
       const L = quinzaine(h), T = h.P.tempo.kwh;
       return `
-<h2>Qui décide de la couleur, et quand</h2>
+<h2>Qui décide de la couleur Tempo de demain, et quand</h2>
 <p>Depuis le 1er novembre 2014, le choix des jours Tempo revient à RTE, qui gère le réseau de transport d’électricité, et non plus à un fournisseur. La ${h.src('creTempo2014', 'délibération de la CRE')} qui le prévoit fixe les quotas et le calendrier ; la ${h.src('rteMethode', 'fiche de méthode de RTE')} décrit l’algorithme des jours blancs. Chaque matin, RTE compare la consommation nette attendue le lendemain, consommation nationale moins éolien et solaire, à des seuils qui baissent à mesure que la saison avance et que le stock de jours se vide. Pour les rouges, la ${h.src('cre2026189', 'délibération de la CRE du 21 octobre 2026')} applique depuis le 1er novembre 2026 la méthode des jours de pointe du mécanisme de capacité, dans un couloir mensuel, et exclut le 24 et le 31 décembre. Un lundi de janvier glacial et sans vent a toutes les chances d’être rouge ; un mardi doux et venteux restera bleu.</p>
 <p>La décision est publiée à 10 h 30 sur le ${h.src('rteCalendrier', 'calendrier Tempo de RTE')}. Elle vaut pour tous les clients Tempo, quel que soit leur fournisseur, et pour la journée qui commence le lendemain à 6 h. Les abonnés à l’ancienne option EJP suivent un autre calendrier, décidé par EDF et annoncé vers 14 h : il a sa page, ${h.a('ejp-demain', 'EJP demain')}. Le signal ${h.a('ecowatt', 'Ecowatt')}, lui aussi publié par RTE, ne change pas la couleur Tempo.</p>
 <h2>Les quatorze derniers jours</h2>
@@ -73,7 +73,7 @@ ${h.table(['Jour', 'Date', 'Couleur'], L.map((x) => [nomJour(h, x.d), h.date(x.d
     body: (h) => {
       const L = quinzaine(h), T = h.P.tempo.kwh;
       return `
-<h2>Who decides the colour, and when</h2>
+<h2>Who decides tomorrow’s Tempo colour, and when</h2>
 <p>Since 1 November 2014 Tempo days have been chosen by RTE, which runs the high-voltage grid, rather than by a supplier. The ${h.src('creTempo2014', 'regulator’s deliberation')} behind it sets the quotas and the calendar; ${h.src('rteMethode', 'RTE’s method note')} describes the white-day algorithm. Each morning RTE compares the next day’s expected net demand, national consumption minus wind and solar, with thresholds that drop as the season goes on and the stock of days runs down. For red days, the ${h.src('cre2026189', 'CRE deliberation of 21 October 2026')} has applied the capacity mechanism’s peak-day method since 1 November 2026, within a monthly corridor, and rules out 24 and 31 December. A freezing, windless Monday in January is very likely to be red; a mild, breezy Tuesday will stay blue.</p>
 <p>The decision goes out at 10:30 on ${h.src('rteCalendrier', 'RTE’s Tempo calendar')}. It applies to every Tempo customer, whatever the supplier, for the day that starts at 06:00 the next morning. Customers on the old EJP option follow a different calendar, set by EDF and announced around 14:00: it has its own page, ${h.a('ejp-demain', 'EJP tomorrow')}. The ${h.a('ecowatt', 'Ecowatt')} signal, also published by RTE, does not change the Tempo colour.</p>
 <h2>The last fourteen days</h2>

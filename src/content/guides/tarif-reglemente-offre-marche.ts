@@ -23,7 +23,7 @@ export default defineGuide({
     title: 'Tarif réglementé ou offre de marché 2026 : le vrai calcul',
     description: 'Tarif réglementé ou offre de marché en 2026 : qui fixe les prix, retour au tarif bleu, et ce que rapporte une remise de 10 % sur le kWh hors taxes, chiffrée.',
     h1: 'Tarif réglementé ou offre de marché : ce qui change vraiment',
-    intro: 'Les règles des deux formules, ce qu’une remise annoncée rapporte une fois les taxes comptées, et quand revenir au tarif bleu.',
+    intro: 'Les règles des deux formules, tarif réglementé et offre de marché, ce qu’une remise annoncée rapporte une fois les taxes comptées, et quand revenir au tarif bleu.',
     resume: (h) => {
       const G = gains(h);
       return `Le tarif réglementé de vente d’électricité, le Tarif Bleu, est fixé par les pouvoirs publics sur proposition de la CRE, deux fois par an, et seuls EDF et les entreprises locales de distribution le vendent. Une offre de marché est un contrat dont le fournisseur fixe librement le prix, à prix fixe pour une durée donnée, indexé sur le tarif réglementé avec une remise, ou indexé sur les prix de gros. Tous les foyers jusqu’à 36 kVA peuvent choisir l’un ou l’autre, changer quand ils veulent et sans frais, et revenir au tarif réglementé après une offre de marché, sauf vers une option fermée comme EJP. La remise d’une offre indexée porte sur le prix hors taxes du kWh : l’accise et la TVA restent dues en entier. Une remise de 10 % fait ainsi gagner ${h.eur(G[1].r10)} par an à un foyer de ${h.num(G[1].kwh)} kWh en option Base, soit ${h.pct(G[1].r10 / G[1].trv)} de sa facture, et non 10 %. Le compteur, le réseau et la qualité de fourniture sont les mêmes dans les deux cas : seul le prix change.`;
@@ -38,7 +38,7 @@ export default defineGuide({
       const G = gains(h), acc = h.P.taxes.accise_kwh_htva, tva = h.P.taxes.tva, B6 = h.P.base.kwh['6'];
       const ht = B6 / (1 + tva) - acc;
       return `
-<h2>Les deux formules, côte à côte</h2>
+<h2>Tarif réglementé et offre de marché, côte à côte</h2>
 ${h.table(['', 'Tarif réglementé (Tarif Bleu)', 'Offre de marché'], [
   ['Qui fixe le prix', 'Les ministres, sur proposition de la CRE', 'Le fournisseur, librement, dans le contrat'],
   ['Qui le vend', 'EDF, ou l’entreprise locale de distribution', 'Tous les fournisseurs, EDF compris'],
@@ -65,7 +65,7 @@ ${h.table(['Foyer', 'Tarif bleu par an', 'Remise de 5 %', 'Remise de 10 %', 'Rem
     title: 'Regulated Tariff or Market Offer 2026: The Real Numbers',
     description: 'Regulated tariff or market offer in France in 2026: who sets prices, going back to the Tarif Bleu, and what a 10% discount on the pre-tax kWh is worth in euros.',
     h1: 'Regulated tariff or market offer: what really changes',
-    intro: 'The rules of both, what an advertised discount is worth once taxes are counted, and when to go back to the Tarif Bleu.',
+    intro: 'The rules of both, the regulated tariff and a market offer, what an advertised discount is worth once taxes are counted, and when to go back to the Tarif Bleu.',
     resume: (h) => {
       const G = gains(h);
       return `France’s regulated electricity tariff, the Tarif Bleu, is set by the government on a proposal from the CRE regulator, twice a year, and only EDF and local distribution companies sell it. A market offer is a contract whose price the supplier sets freely: fixed for a set period, indexed on the regulated tariff with a discount, or indexed on wholesale prices. Every household up to 36 kVA can choose either, switch whenever it likes at no cost, and go back to the regulated tariff after a market offer, except to a closed option such as EJP. The discount on an indexed offer applies to the pre-tax kWh price: the excise duty and VAT are still paid in full. A 10% discount therefore saves a ${h.num(G[1].kwh)} kWh household on the Base option ${h.eur(G[1].r10)} a year, ${h.pct(G[1].r10 / G[1].trv)} of its bill, not 10%. The meter, the grid and the quality of supply are the same either way: only the price changes.`;
@@ -80,7 +80,7 @@ ${h.table(['Foyer', 'Tarif bleu par an', 'Remise de 5 %', 'Remise de 10 %', 'Rem
       const G = gains(h), acc = h.P.taxes.accise_kwh_htva, tva = h.P.taxes.tva, B6 = h.P.base.kwh['6'];
       const ht = B6 / (1 + tva) - acc;
       return `
-<h2>The two side by side</h2>
+<h2>Regulated tariff and market offer side by side</h2>
 ${h.table(['', 'Regulated tariff (Tarif Bleu)', 'Market offer'], [
   ['Who sets the price', 'Ministers, on a proposal from the CRE', 'The supplier, freely, in the contract'],
   ['Who sells it', 'EDF, or the local distribution company', 'Every supplier, EDF included'],

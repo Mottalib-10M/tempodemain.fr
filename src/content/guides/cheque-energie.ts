@@ -31,7 +31,7 @@ export default defineGuide({
     title: 'Chèque énergie 2026 : montant, barème et comment l’utiliser',
     description: 'Chèque énergie 2026 : 48 à 277 € selon le revenu fiscal par unité de consommation, plafond 11 000 €. Calcul du montant et mode d’emploi pour payer la facture.',
     h1: 'Chèque énergie 2026 : montant, barème et mode d’emploi',
-    intro: 'Le barème officiel, le calcul des unités de consommation, le calendrier 2026 et la façon de s’en servir pour payer l’électricité.',
+    intro: 'Le barème officiel du chèque énergie, le calcul des unités de consommation, le calendrier 2026 et la façon de s’en servir pour payer l’électricité.',
     resume: (h) => {
       const C = h.P.cheque_energie, M = C.montants;
       return `Le chèque énergie est une aide de l’État pour payer les dépenses d’énergie du logement : facture d’électricité ou de gaz, fioul, bois, ou charges de chauffage d’un logement social. En ${C.annee}, il revient aux foyers dont le revenu fiscal de référence de ${C.rfr_annee}, celui des revenus ${C.revenus_annee}, est inférieur à ${h.eur(C.plafond_rfr_uc)} par unité de consommation. Le premier déclarant compte pour 1 unité, le second ou, à défaut, la première personne à charge pour 0,5, chacune des autres personnes pour 0,3. Le montant va de ${h.eur(Math.min(...M.un))} à ${h.eur(Math.max(...M.deux))} selon la tranche de revenu et la taille du foyer, avec un seul chèque par logement. L’envoi automatique a commencé en avril ${C.annee}, avec une seconde vague en mai ; un foyer éligible qui n’a rien reçu doit le demander sur chequeenergie.gouv.fr. Pour payer l’électricité, on l’envoie à son fournisseur avec son numéro client, ou on le règle en ligne ; un chèque de ${C.annee} reste valable jusqu’au ${h.date(C.fin_validite)}.`;
@@ -71,7 +71,7 @@ ${h.table(['Foyer fiscal', 'Unités de consommation', 'Revenu fiscal de référe
     title: 'Chèque Énergie 2026: Amount, Income Scale and How to Use It',
     description: 'Chèque énergie 2026, France’s energy voucher: €48-€277 by tax income per consumption unit, €11,000 ceiling. Work out the amount and how to pay a bill with it.',
     h1: 'Chèque énergie 2026: amount, income scale and how to use it',
-    intro: 'The official scale, how consumption units are counted, the 2026 timetable and how to use the voucher to pay for electricity.',
+    intro: 'The official chèque énergie scale, how consumption units are counted, the 2026 timetable and how to use the voucher to pay for electricity.',
     resume: (h) => {
       const C = h.P.cheque_energie, M = C.montants;
       return `The chèque énergie is a French state voucher that pays household energy costs: an electricity or gas bill, heating oil, wood, or the heating charges of a social housing flat. In ${C.annee} it goes to households whose ${C.rfr_annee} reference tax income (revenu fiscal de référence, on the income of ${C.revenus_annee}) is below ${h.eur(C.plafond_rfr_uc)} per consumption unit. The first person filing counts as 1 unit, the second or, failing that, the first dependant as 0.5, and each other person as 0.3. The amount ranges from ${h.eur(Math.min(...M.un))} to ${h.eur(Math.max(...M.deux))} depending on the income band and household size, with one voucher per home. Automatic sending began in April ${C.annee}, with a second wave in May; an eligible household that received nothing has to apply on chequeenergie.gouv.fr. To pay for electricity you send it to your supplier with your customer number, or pay online; a ${C.annee} voucher is valid until ${h.date(C.fin_validite)}.`;
@@ -86,7 +86,7 @@ ${h.table(['Foyer fiscal', 'Unités de consommation', 'Revenu fiscal de référe
       const C = h.P.cheque_energie, F = foyers(h, false), ex = h.M.chequeEnergie(20000, h.M.ucFoyer(2, 2));
       const fac = h.M.coutOption('base', { kwh: 4000, kva: 6, chauffage: 0, partHC: 0 }).total;
       return `
-<h2>The 2026 scale</h2>
+<h2>The 2026 chèque énergie scale</h2>
 ${h.table(['Tax income per consumption unit', '1 unit', 'Between 1 and 2 units', '2 units or more'], tranches(h, false), 'Voucher amount incl. tax, order of 31 July 2025, article 2. Above €11,000 per unit, no voucher.', ['l', 'r', 'r', 'r'])}
 <p>The scale is set by the ${h.src('chequeArrete', 'order of 31 July 2025')}, published in the Journal officiel of 1 August 2025, and has not moved since: the ${C.annee} voucher uses the same grid, with the ${C.rfr_annee} reference tax income, according to the ${h.src('mneCheque', 'national energy ombudsman’s sheet')}. The reference tax income is printed on the first page of the ${C.rfr_annee} tax notice. Consumption units are defined in article R. 124-1 of the Energy Code, rewritten by ${h.src('chequeDecret', 'decree no. 2025-735')}: the 0.5 and 0.3 values are halved for a minor child in shared custody.</p>
 <h2>Income ceilings by household</h2>

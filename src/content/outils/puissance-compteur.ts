@@ -22,7 +22,7 @@ export default defineGuide({
     title: 'Puissance compteur électrique 2026 : quels kVA choisir ?',
     description: 'Puissance du compteur électrique 2026 : quelle puissance en kVA choisir selon vos appareils, abonnement de chaque option et coût d’un cran de puissance en plus.',
     h1: 'Quelle puissance de compteur choisir ?',
-    intro: 'Additionnez les appareils qui fonctionnent en même temps : l’outil donne la puissance à souscrire et l’abonnement qui va avec.',
+    intro: 'Additionnez les appareils qui fonctionnent en même temps : l’outil donne la puissance du compteur à souscrire et l’abonnement qui va avec.',
     resume: (h) => {
       const C = crans(h), c69 = C.find((c) => c.de === 6)!;
       return `La puissance souscrite, exprimée en kilovoltampères (kVA), est le plafond d’électricité que votre logement peut appeler au même instant. Si les appareils allumés ensemble le dépassent, le compteur coupe. En usage domestique, un kVA vaut à peu près un kilowatt : un radiateur de 2 000 W, une plaque de 1,5 kW et un ballon de 2,2 kW tirent ensemble environ 5,7 kVA. Les puissances proposées au tarif réglementé vont de ${h.num(h.M.PUISSANCES[0])} à ${h.num(h.M.PUISSANCES[h.M.PUISSANCES.length - 1])} kVA, par crans. Chaque cran augmente l’abonnement mais pas le prix du kilowattheure, sauf en Base où le kWh baisse légèrement à partir de 9 kVA. Passer de 6 à 9 kVA coûte ${h.eur(c69.plus)} de plus par an en option Heures creuses. L’option Tempo n’existe qu’à partir de ${h.num(h.P.tempo.kva_min)} kVA, et la Base n’est plus ouverte aux nouveaux contrats au-delà de 6 kVA. Le bon réglage est donc la plus petite puissance qui ne coupe jamais.`;
@@ -43,7 +43,7 @@ ${h.table(['Puissance', 'Base', 'Heures creuses', 'Tempo'], grille(h, true), 'Ab
 <h2>Ce que coûte un cran de plus</h2>
 ${h.table(['De', 'À', 'Abonnement en plus par an'], C.map((c) => [`${c.de} kVA`, `${c.a} kVA`, h.eur(c.plus)]), 'Option Heures creuses, écart d’abonnement annuel TTC.', ['l', 'l', 'r'])}
 <p>Les crans ne coûtent pas tous la même chose : l’écart grandit entre 18 et 36 kVA, où les marches font 6 kVA. Avant de monter, regardez quand surviennent les coupures. Si elles tombent toujours quand le four et le lave-linge tournent pendant que le chauffage est allumé, décaler une machine de deux heures suffit souvent, et l’économie se garde chaque année.</p>
-<h2>Comment estimer votre pointe</h2>
+<h2>Comment estimer votre pointe et la puissance du compteur</h2>
 <p>Ce qui compte n’est pas la somme de tous vos appareils, mais celle de ceux qui fonctionnent au même moment. Un sèche-linge et un four allumés le dimanche midi, en plein hiver, avec les radiateurs : c’est souvent la pointe d’une maison. L’outil vous fait additionner les familles d’usages qui se cumulent vraiment : chauffage, cuisson, eau chaude, recharge et le reste. Lisez la puissance de chaque appareil sur sa plaque, puis prenez la puissance immédiatement supérieure à votre total.</p>
 <ul>
 <li>Un chauffage électrique se compte en totalité : tous les radiateurs peuvent démarrer ensemble au réveil d’un matin froid.</li>
@@ -60,7 +60,7 @@ ${h.table(['De', 'À', 'Abonnement en plus par an'], C.map((c) => [`${c.de} kVA`
     title: 'Meter Power in kVA 2026: Which Electricity Power to Choose',
     description: 'Meter power in kVA for 2026: which French electricity power to choose for your appliances, the standing charge of each option, and the cost of one step up.',
     h1: 'Which meter power should you choose?',
-    intro: 'Add up the appliances that run at the same time: the tool gives the power to subscribe and the standing charge that goes with it.',
+    intro: 'Add up the appliances that run at the same time: the tool gives the meter power to subscribe and the standing charge that goes with it.',
     resume: (h) => {
       const C = crans(h), c69 = C.find((c) => c.de === 6)!;
       return `Subscribed power (puissance souscrite), expressed in kilovolt-amperes (kVA), is the ceiling on the electricity your home can draw at any one moment. If the appliances running together exceed it, the meter cuts out. In household use one kVA is roughly one kilowatt: a 2,000 W radiator, a 1.5 kW hob ring and a 2.2 kW water heater draw about 5.7 kVA between them. On the regulated tariff, powers run from ${h.num(h.M.PUISSANCES[0])} to ${h.num(h.M.PUISSANCES[h.M.PUISSANCES.length - 1])} kVA in steps. Each step raises the standing charge but not the price per kilowatt-hour, except on Base where the kWh is slightly cheaper from 9 kVA. Going from 6 to 9 kVA costs ${h.eur(c69.plus)} more a year on the Off-peak option. Tempo only exists from ${h.num(h.P.tempo.kva_min)} kVA, and Base is closed to new contracts above 6 kVA. The right setting is therefore the lowest power that never trips.`;
@@ -81,7 +81,7 @@ ${h.table(['Power', 'Base', 'Off-peak', 'Tempo'], grille(h, false), 'Annual stan
 <h2>What one more step costs</h2>
 ${h.table(['From', 'To', 'Extra standing charge a year'], C.map((c) => [`${c.de} kVA`, `${c.a} kVA`, h.eur(c.plus)]), 'Off-peak option, annual standing charge gap including tax.', ['l', 'l', 'r'])}
 <p>Steps do not all cost the same: the gap widens between 18 and 36 kVA, where steps are 6 kVA wide. Before moving up, look at when the cut-outs happen. If they always come when the oven and washing machine run while the heating is on, putting one load off by two hours is often enough, and the saving repeats every year.</p>
-<h2>How to estimate your peak</h2>
+<h2>How to estimate your peak and meter power</h2>
 <p>What matters is not the total of all your appliances but the total of those running at the same moment. A tumble dryer and an oven at Sunday lunchtime in mid-winter, with the radiators on, is often a house’s peak. The tool has you add up the groups of uses that really stack: heating, cooking, hot water, car charging and the rest. Read each appliance’s power on its plate, then take the power step just above your total.</p>
 <ul>
 <li>Electric heating counts in full: every radiator can start at once on a cold morning.</li>

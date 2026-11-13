@@ -37,7 +37,7 @@ export default defineGuide({
     title: 'Calendrier Tempo 2026-2027 : jours rouges et blancs restants',
     description: 'Jours Tempo restants en 2026-2027 : rouges et blancs encore à venir, calendrier jour par jour publié par RTE et coût des jours rouges sur votre facture.',
     h1: 'Jours Tempo restants dans la saison',
-    intro: 'Combien de jours rouges, blancs et bleus il reste d’ici au 31 août, et ce que les jours rouges à venir vous coûteront.',
+    intro: 'Combien de jours Tempo rouges, blancs et bleus il reste d’ici au 31 août, et ce que les jours rouges à venir vous coûteront.',
     resume: (h) => {
       const { y, r, last, next } = etat(h);
       return `La saison Tempo ${y}-${y + 1} a commencé le 1er septembre ${y} et finira le 31 août ${y + 1}. D’après les couleurs publiées par RTE jusqu’au ${h.date(last)}, il reste ${h.num(r.R)} jours rouges sur ${h.num(r.q.R)}, ${h.num(r.W)} jours blancs sur ${h.num(r.q.W)} et ${h.num(r.B)} jours bleus sur ${h.num(r.q.B)}. Les jours rouges ne peuvent tomber qu’entre le 1er novembre et le 31 mars, du lundi au vendredi, hors jours fériés : ${next ? `le prochain jour qui peut être rouge est le ${h.date(next)}` : 'plus aucun jour de la saison ne peut être rouge'}. Les jours blancs, eux, peuvent encore arriver n’importe quel jour sauf le dimanche, jusqu’à la fin du mois d’août. Le calcul ci-dessus multiplie les jours rouges restants par le coût d’une de vos journées d’hiver au tarif du 1er août 2026, pour savoir ce qu’il reste à payer cet hiver, et le calendrier en dessous montre chaque jour déjà publié.`;
@@ -77,7 +77,7 @@ ${h.table(['Mois', 'Jours rouges en moyenne', 'Le plus', 'Saisons sans aucun rou
     title: 'Tempo days left 2026-2027: red, white and blue days to come',
     description: 'Tempo days left in the 2026-2027 season: red and white days still to come, the day-by-day calendar published by RTE and what the red days will add to your bill.',
     h1: 'Tempo days left in the season',
-    intro: 'How many red, white and blue days remain until 31 August, and what the red days to come will cost you.',
+    intro: 'How many red, white and blue Tempo days are left until 31 August, and what the red days to come will cost you.',
     resume: (h) => {
       const { y, r, last, next } = etat(h);
       return `The ${y}-${y + 1} Tempo season began on 1 September ${y} and will end on 31 August ${y + 1}. Going by the colours RTE has published up to ${h.date(last)}, there are ${h.num(r.R)} red days left out of ${h.num(r.q.R)}, ${h.num(r.W)} white days out of ${h.num(r.q.W)} and ${h.num(r.B)} blue days out of ${h.num(r.q.B)}. Red days can only fall between 1 November and 31 March, Monday to Friday, excluding French public holidays: ${next ? `the next day that can be red is ${h.date(next)}` : 'no day left in the season can be red'}. White days can still come on any day except Sunday, right up to the end of August. The calculation above multiplies the red days left by the cost of one of your winter days on the tariff of 1 August 2026, to show what is still to pay this winter, and the calendar below it shows every day already published by the grid operator.`;
