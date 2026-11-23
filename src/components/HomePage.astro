@@ -31,12 +31,12 @@ const jsonLd = [websiteSchema(lang), organizationSchema(lang), webPageSchema({ n
 const fr = lang === 'fr';
 ---
 <PageLayout title={x.title} description={x.description} lang={lang} jsonLd={jsonLd} faqs={faqs} sources={sources}>
-  <header class="mb-3">
+  <header class="mb-2">
     <h1 style="hyphens: manual" class="text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">{x.h1}</h1>
     <p class="mt-2 text-base text-navy-700 max-sm:text-[0.95rem] sm:text-lg">{x.intro}</p>
   </header>
   <ColourToday client:load lang={lang} buildDate={BUILD_TODAY} buildHour={BUILD_HOUR} />
-  <p class="mb-2 mt-4 font-serif text-lg font-semibold text-navy-900">{x.calcTitle}</p>
+  <p class="mb-2 mt-2 font-serif text-lg font-semibold text-navy-900">{x.calcTitle}</p>
   <div data-outil><CompareCalc client:load lang={lang} methodHref={route('method', lang)} id="accueil" /></div>
   <Clamp text={resume} lang={lang} id="clamp-home" sentences={2} class="mt-2" />
   <p class="mt-3 text-sm text-navy-600">{fr ? 'Par' : 'By'} <a href={route('about', lang)} class="underline">{AUTHOR_NAME}</a> · <a href={route('method', lang)} class="underline">{fr ? 'Méthode de calcul' : 'Calculation method'}</a> · <a href={route('comparateur', lang)} class="underline">{fr ? 'Comparateur détaillé' : 'Detailed comparison'}</a></p>

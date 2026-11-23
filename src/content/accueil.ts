@@ -39,6 +39,7 @@ export const HOME: Record<'fr' | 'en', Home> = {
     faqs: (h) => {
       const R = h.P.tempo_regles, T = h.P.tempo.kwh;
       return [
+        { q: 'Quels seront les prix Tempo en 2027 ?', a: 'Ils ne sont pas encore publiés. Le prochain mouvement des tarifs réglementés est attendu au 1er février 2027, sur proposition de la CRE publiée en général deux semaines avant, avec une nouvelle baisse de l’accise prévue par la loi de finances pour 2026 dont le montant n’est pas connu. Le site appliquera la nouvelle grille le jour de sa parution ; d’ici là, les prix du 1er août 2026 restent en vigueur.' },
         { q: 'À quelle heure connaît-on la couleur Tempo de demain ?', a: `RTE publie la couleur du lendemain chaque jour à 10 h 30, sur sa page « Calendrier Tempo » ; c’est cette couleur qui fait foi. Une indication peut paraître entre 8 h et 10 h 30, sans valeur contractuelle. Les fournisseurs relaient ensuite l’information par courriel, SMS ou application, et le compteur Linky l’affiche. Cette page se reconstruit plusieurs fois par jour après la publication de RTE.` },
         { q: 'Un jour rouge peut-il tomber un samedi ou un jour férié ?', a: `Non. Les ${h.num(R.jours_rouges)} jours rouges ne peuvent être placés qu’entre le 1er novembre et le 31 mars, du lundi au vendredi, hors jours fériés, et jamais plus de ${h.num(R.rouge_max_consecutifs)} jours d’affilée ; depuis le ${h.date(R.rouge_pp_depuis)}, ni le 24 ni le 31 décembre. Un samedi peut en revanche être blanc ; seul le dimanche est toujours bleu. Ces règles viennent de la délibération de la CRE de 2014 qui a confié le choix des jours à RTE, complétée par celle du 21 octobre 2026.` },
         { q: 'Pourquoi la couleur d’aujourd’hui change-t-elle à 6 h et pas à minuit ?', a: 'Une journée Tempo va de 6 h à 6 h le lendemain. Entre minuit et 6 h, vous êtes donc encore sur la couleur de la veille, au prix des heures creuses de cette couleur. Concrètement, la nuit qui suit un jour rouge reste facturée au prix « rouge heures creuses », un peu plus cher que les heures creuses d’un jour bleu, mais sans commune mesure avec les heures pleines.' },
@@ -81,6 +82,15 @@ ${h.table(['Couleur', 'Heures creuses (22 h - 6 h)', 'Heures pleines (6 h - 22 h
 ], 'Journée de 40 kWh dont 30 % la nuit : une maison chauffée à l’électricité par temps froid.', ['l', 'r', 'r', 'r'])}
 <p>Une même journée d’hiver coûte ainsi ${h.eur(jour('B'))} si elle est bleue et ${h.eur(jour('R'))} si elle est rouge. Tout l’enjeu de Tempo est là : les jours bleus et blancs sont moins chers que le kWh de la Base, à ${h.kwh(h.P.base.kwh['6'])} en 6 kVA, mais vingt-deux journées pèsent lourd si l’on ne change rien à ses habitudes. Faites l’essai sur votre propre consommation d’une journée :</p>
 <!--mini:jourCouleur-->
+
+<h2>Tempo en 2027 : ce qui est déjà fixé et ce qui reste à publier</h2>
+<p>La saison 2026-2027 court jusqu’au 31 août 2027 avec les mêmes quotas, et deux règles de 2027 sont déjà écrites dans la ${h.src('cre2026189', 'délibération de la CRE du 21 octobre 2026')} : pas de jour rouge le 24 ni le 31 décembre, et à partir du 1er novembre 2027 un jour rouge annoncé dès J-2 quand RTE le tire si tôt. Les prix, eux, ne sont pas encore connus :</p>
+<ul>
+<li><strong>Tarif Tempo au 1er février 2027 :</strong> fixé sur proposition de la CRE, publiée en général deux semaines avant le mouvement (pour le 1er août 2026, la ${h.src('creTrve2026', 'délibération du 15 juillet 2026')}). Aucune proposition n’est parue à la date de notre relevé.</li>
+<li><strong>Accise sur l’électricité au 1er février 2027 :</strong> une nouvelle baisse est prévue par l’article 71 de la loi de finances pour 2026 ; son montant n’est pas publié. Le détail est sur la page ${h.a('accise-electricite', 'accise sur l’électricité')}.</li>
+<li><strong>Couleurs de 2027 :</strong> RTE publie chaque couleur la veille à 10 h 30, comme aujourd’hui.</li>
+</ul>
+<p>Le comparateur et les prix du site passeront à la grille de février 2027 le jour de sa publication par la CRE et EDF. Nous n’affichons aucun prix 2027 anticipé.</p>
 
 <h2>Pourquoi nos calculs partent de la consommation nationale mesurée par RTE</h2>
 <p>Les simulateurs Tempo qu’on trouve en ligne butent tous sur la même question : quelle part de votre consommation tombe un jour rouge ? Votre facture de l’an dernier le dit si vous étiez déjà en Tempo. Sinon, la plupart des outils supposent une répartition au prorata des jours, ce qui revient à dire qu’un radiateur consomme autant en août qu’en janvier. C’est faux, et c’est précisément le chauffage qui rend les jours rouges coûteux.</p>
@@ -135,6 +145,7 @@ ${h.table(['Foyer', 'Base', 'Heures creuses', 'Tempo', 'Tempo, moitié reportée
     faqs: (h) => {
       const R = h.P.tempo_regles, T = h.P.tempo.kwh;
       return [
+        { q: 'What will Tempo prices be in 2027?', a: 'They are not published yet. The next regulated tariff change is expected on 1 February 2027, on a CRE proposal usually published about two weeks earlier, together with a further excise cut planned by the Finance Act for 2026 whose amount is not known. The site will apply the new grid on the day it appears; until then the prices of 1 August 2026 apply.' },
         { q: 'What time is tomorrow’s Tempo colour announced?', a: 'RTE publishes the next day’s colour every day at 10:30 on its Tempo calendar page, and that colour is binding. An early indication may appear between 08:00 and 10:30 with no contractual value. Suppliers then pass it on by email, text or app, and the Linky meter displays it. This page rebuilds several times a day after RTE publishes.' },
         { q: 'Can a red day fall on a Saturday or a bank holiday?', a: `No. The ${h.num(R.jours_rouges)} red days can only be placed between 1 November and 31 March, Monday to Friday, excluding public holidays, and never more than ${h.num(R.rouge_max_consecutifs)} days in a row; since ${h.date(R.rouge_pp_depuis)}, never on 24 or 31 December either. A Saturday can be white, though; only Sunday is always blue. These rules come from the 2014 CRE deliberation that handed the choice of days to RTE, supplemented by the one of 21 October 2026.` },
         { q: 'Why does today’s colour switch at 06:00 rather than midnight?', a: 'A Tempo day runs from 06:00 to 06:00 the next day. Between midnight and 06:00 you are still on the previous day’s colour, at that colour’s off-peak price. In practice the night after a red day is billed at the red off-peak rate, slightly dearer than blue off-peak but nowhere near the red peak rate.' },
@@ -172,6 +183,15 @@ ${h.table(['Colour', 'Off-peak (22:00-06:00)', 'Peak (06:00-22:00)', '40 kWh day
 ], 'A 40 kWh day with 30% at night: an electrically heated house in cold weather.', ['l', 'r', 'r', 'r'])}
 <p>The same winter day therefore costs ${h.eur(jour('B'))} if it is blue and ${h.eur(jour('R'))} if it is red. That is the whole Tempo bargain: blue and white days are cheaper than the Base rate of ${h.kwh(h.P.base.kwh['6'])} at 6 kVA, but twenty-two days weigh heavily if you change nothing. Try it on one day of your own use:</p>
 <!--mini:jourCouleur-->
+
+<h2>Tempo in 2027: what is already set and what is still to come</h2>
+<p>The 2026-2027 season runs to 31 August 2027 with the same quotas, and two 2027 rules are already written into the ${h.src('cre2026189', 'regulator’s deliberation of 21 October 2026')}: no red day on 24 or 31 December, and from 1 November 2027 a red day announced two days ahead when RTE draws it that early. Prices are not known yet:</p>
+<ul>
+<li><strong>Tempo tariff on 1 February 2027:</strong> set on a proposal from the CRE, usually published about two weeks before the change (for 1 August 2026, the ${h.src('creTrve2026', 'deliberation of 15 July 2026')}). No proposal had appeared on the date of our last check.</li>
+<li><strong>Electricity excise on 1 February 2027:</strong> a further cut is planned by article 71 of the Finance Act for 2026; the amount has not been published. Details are on the ${h.a('accise-electricite', 'electricity excise page')}.</li>
+<li><strong>2027 colours:</strong> RTE publishes each colour the day before at 10:30, as it does now.</li>
+</ul>
+<p>The comparison tool and the prices on this site move to the February 2027 grid on the day the CRE and EDF publish it. No 2027 price is shown in advance.</p>
 
 <h2>Why our figures start from national demand measured by RTE</h2>
 <p>Every online Tempo calculator runs into the same question: how much of your use falls on red days? Last year’s bill tells you if you were already on Tempo. Otherwise most tools assume a split in proportion to the number of days, which amounts to saying that a radiator uses as much in August as in January. It does not, and heating is exactly what makes red days expensive.</p>

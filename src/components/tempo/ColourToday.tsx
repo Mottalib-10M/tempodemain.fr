@@ -13,13 +13,13 @@ const TX = {
   en: { today: 'Today', tomorrow: 'Tomorrow', hours: '06:00 to 06:00 the next day', pending: 'Not published yet', pendingWhy: 'RTE publishes it every day around 10:30', late: 'Published by RTE at 10:30; our reading follows within the hour', none: 'Not recorded', night: 'It is before 06:00: the current Tempo day is still yesterday’s', left: 'Left this season', red: 'red', white: 'white', blue: 'blue', until: 'until 31 August', nextRed: 'Earliest possible red day', redOver: 'No red day left possible this season', fetched: 'RTE reading of' },
 };
 
-function Card({ d, c, title, sub, lang }: { d: string; c: Jour; title: string; sub: string; lang: L }) {
+function Card({ d, c, title, sub, lang, note }: { d: string; c: Jour; title: string; sub: string; lang: L; note?: string }) {
   return (
     <div className="rounded-xl border-2 px-3 py-2 sm:px-4 sm:py-3" style={cardStyle(c)} data-couleur={c ?? 'inconnue'}>
       <p className="text-xs font-medium opacity-90 sm:text-sm"><span className="font-semibold">{title}</span><span className="max-sm:block"><span className="sm:inline hidden"> · </span>{jourLong(d, lang)}</span></p>
       {/* Couleur en grand ; le message d'attente, plus long, reste sur une ligne pour ne pas repousser le comparateur sous la ligne de flottaison. */}
       <p className={`mt-0.5 font-bold leading-tight ${c ? 'text-xl sm:text-3xl' : 'text-lg sm:text-xl'}`}>{c ? NOM_JOUR[lang][c] : sub}</p>
-      <p className="mt-0.5 text-xs opacity-90 max-sm:hidden">{c ? TX[lang].hours : TX[lang].pendingWhy}</p>
+      <p className="mt-0.5 text-xs opacity-90 max-sm:hidden">{note ?? (c ? TX[lang].hours : TX[lang].pendingWhy)}</p>
     </div>
   );
 }
@@ -35,13 +35,16 @@ export default function ColourToday({ lang = 'fr', buildDate, buildHour }: { lan
   let next: string | null = null;
   for (let d = addDays(last, 1); d <= `${y + 1}-03-31`; d = addDays(d, 1)) if (redPossible(d)) { next = d; break; }
   const n = (x: number) => formatNumber(x, 0, lang);
+  const hier = colour(addDays(today, -1));
+  const night = now.hour < 6 ? `${t.night} (${hier ? NOM_JOUR[lang][hier].toLowerCase() : '?'}).` : undefined;
   return (
     <div data-chrome className="not-prose">
       <div className="grid grid-cols-2 gap-2 sm:gap-3">
-        <Card d={today} c={cT} title={t.today} sub={t.none} lang={lang} />
+        <Card d={today} c={cT} title={t.today} sub={t.none} lang={lang} note={night} />
         <Card d={tomorrow} c={cD} title={t.tomorrow} sub={now.hour < 11 ? t.pending : t.late} lang={lang} />
       </div>
-      {now.hour < 6 && <p className="mt-2 text-sm text-navy-700">{t.night} ({colour(addDays(today, -1)) ? NOM_JOUR[lang][colour(addDays(today, -1))!].toLowerCase() : '?'}).</p>}
+      {/* Avant 6 h, la note de nuit va dans la carte sur ordinateur (hauteur constante, le comparateur reste au premier écran) ; paragraphe sur mobile, où cette ligne de la carte est masquée. */}
+      {night && <p className="mt-2 text-sm text-navy-700 sm:hidden">{night}</p>}
       <p className="mt-2 text-sm text-navy-700">
         <strong>{t.left}</strong> ({t.until} {y + 1}){lang === "fr" ? "\u00a0: " : ": "}<span className="font-semibold text-red-800">{n(r.R)} {t.red}</span> · <span className="font-semibold text-navy-900">{n(r.W)} {t.white}</span> · <span className="font-semibold text-blue-800">{n(r.B)} {t.blue}</span>
         {' · '}{r.R > 0 ? (next ? <>{t.nextRed}{lang === "fr" ? "\u00a0: " : ": "}{dateLongue(next, lang)}</> : null) : t.redOver}
