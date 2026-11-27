@@ -137,4 +137,6 @@ main:has(> div > nav[aria-label]) header:has(> h1) { clip-path:inset(-1rem -100v
 /* premier champ dans le premier écran du bureau (limite 461 px) */
 main header:has(> h1) { padding-bottom:.5rem !important; }
 main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]) { padding-top:.25rem !important; padding-bottom:.25rem !important; }
+/* traits de jointure : chaque bloc du bandeau déborde d'1 px vers le haut sur le précédent, la ligne claire d'anticrénelage entre deux blocs (hauteurs fractionnaires) disparaît */
+main header:has(> h1) ~ :not([data-outil]):has(~ [data-outil]), main [data-outil], main :is(astro-island,div):has(> [data-outil][data-chrome]) { clip-path:inset(-1px -100vmax 0 -100vmax); }
 /* === fin de la charte du pays === */

@@ -74,6 +74,7 @@ export function JoursRestantsTool({ lang = 'fr', buildDate }: { lang?: L; buildD
         [fr ? 'Jours bleus restants' : 'Blue days left', n0(r.B, lang)],
         [fr ? 'Jours ouvrés encore possibles pour un rouge' : 'Weekdays still able to be red', n0(slots, lang)],
       ]} />
+      <SeasonCalendar y={y} lang={lang} today={today} />
     </>} result={<>
       <Head label={fr ? `Les ${n0(r.R, lang)} jours rouges restants vous coûteront` : `The ${n0(r.R, lang)} red days left will cost you`} value={eur(rouge, lang)} sub={fr ? `soit ${eur(rouge - r.R * bleu, lang)} de plus que des jours bleus` : `that is ${eur(rouge - r.R * bleu, lang)} more than blue days`} />
       <Rows rows={[
@@ -83,7 +84,6 @@ export function JoursRestantsTool({ lang = 'fr', buildDate }: { lang?: L; buildD
       ]} />
       <Note>{fr ? `Saison ${y}-${y + 1} au ${dateLongue(M.lastPublished(y) ?? today, lang)}, couleurs publiées par RTE${sep}${n0(r.u.R, lang)} rouge(s), ${n0(r.u.W, lang)} blanc(s), ${n0(r.u.B, lang)} bleu(s).` : `Season ${y}-${y + 1} to ${dateLongue(M.lastPublished(y) ?? today, lang)}, colours published by RTE${sep}${n0(r.u.R, lang)} red, ${n0(r.u.W, lang)} white, ${n0(r.u.B, lang)} blue.`}</Note>
     </>} />
-    <SeasonCalendar y={y} lang={lang} today={today} />
   </>);
 }
 
@@ -102,6 +102,7 @@ export function HistoriqueTool({ lang = 'fr', buildDate }: { lang?: L; buildDate
         <SelectField id="historique-saison" label={fr ? 'Saison' : 'Season'} value={k} onChange={setK} options={keys.slice().reverse().map((x) => ({ value: x, label: x }))} />
         <NumberField id="historique-kj" label={fr ? 'Consommation d’un jour d’hiver' : 'Use on a winter day'} value={kj} onChange={setKj} unit="kWh" max={500} lang={lang} />
       </Row2>
+      <SeasonCalendar y={y} lang={lang} today={today} />
     </>} result={<>
       <Head label={fr ? `Saison ${k} : jours rouges` : `Season ${k}: red days`} value={n0(s.n.R, lang)} sub={fr ? `${n0(s.n.W, lang)} blancs, ${n0(s.n.B, lang)} bleus${s.complete ? '' : ' (saison en cours)'}` : `${n0(s.n.W, lang)} white, ${n0(s.n.B, lang)} blue${s.complete ? '' : ' (current season)'}`} />
       <Rows rows={[
@@ -112,7 +113,6 @@ export function HistoriqueTool({ lang = 'fr', buildDate }: { lang?: L; buildDate
       ]} />
       <Note>{fr ? 'Surcoût : chaque jour rouge comparé à un jour bleu de même consommation, 30 % la nuit, prix du 1er août 2026.' : 'Extra cost: each red day against a blue day with the same use, 30% at night, prices from 1 August 2026.'}</Note>
     </>} />
-    <SeasonCalendar y={y} lang={lang} today={today} />
   </>);
 }
 
